@@ -1,12 +1,7 @@
-> lombok 공식 문서 > @builder
-> https://projectlombok.org/features/Builder
 
-* 복잡한 객체 생성 과정을 세련되고 간편하게 처리할 수 있다.
-* 클래스에 대해 빌더 패턴을 자동으로 생성해주는 도구이다.
+[[@Builder]]
 
 
-
------
 
 
 빌더 패턴을 사용해야 하는 이유

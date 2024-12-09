@@ -77,7 +77,8 @@
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
 
 * [[Lombok]]
-* [[@Builder와 Builder 패턴]]
+* [[Builder 패턴]]
+* [[@Builder]]
 
 
 
