@@ -44,16 +44,32 @@
 		* <span style="background:rgba(240, 107, 5, 0.2)">...은 무엇인가? 좀 더 알아보기</span>
 
 * 디렉토리 컨벤션
+	*  디렉토리: 컴퓨팅에서 파일을 분류하기 위해 사용하는 이름 공간. =file, catalog
+	* 컨벤션: 작업을 조직적으로 수행하기 위해 공통적으로 합의된 규칙이나 관례.
+	* 디렉토리와 파일의 구조를 일정한 규칙에 따라 정리하고 사용하는 방식
+	* 가독성, 유지보수성, 협업 효율성을 위해 사용
 	* <span style="background:rgba(240, 107, 5, 0.2)">디렉토리 컨벤션은 어떻게 짜는 것이 좋으며, 다들 어떤 식으로 짜고 있고 그것을 관리하고 있는가?</span>
+		<font color="#ff0000">	* 디렉토리 컨벤션 내용 공부했던 거 더 정리하기</font>
+
+
+
+
+* Entity 매핑
+	* Entity class에 사용되는 주요 어노테이션
+		* `@Entity`
+		* `@Getter` / `@Setter`
+		* 빌더 패턴
+			* `@Builder`
+			* `@NoArgsConstructor(access = AccessLevel.PROTECTED)`
+			* `@AllArgsConstructor`
+	* Primary Key 속성 부여 어노테이션
+		* `@GeneratedValue(strategy = GenerationType.IDENTITY)`
 
 
 
 #### 추가 공부
 * 디렉토리 컨벤션
-	* 디렉토리: 컴퓨팅에서 파일을 분류하기 위해 사용하는 이름 공간. =file, catalog
-	* 컨벤션: 작업을 조직적으로 수행하기 위해 공통적으로 합의된 규칙이나 관례.
-	* 디렉토리와 파일의 구조를 일정한 규칙에 따라 정리하고 사용하는 방식
-	* ㅇ
+	*
 
 ##### 느낀 점, 추가로 더 공부해보고 싶은 것
 
