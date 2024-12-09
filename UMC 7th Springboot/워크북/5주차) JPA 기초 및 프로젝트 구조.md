@@ -55,21 +55,32 @@
 
 
 * Entity 매핑
-	* Entity class에 사용되는 주요 어노테이션
+	* Entity 클래스에 사용되는 주요 어노테이션
 		* `@Entity`
+			* 해당 클래스가 JPA의 Entity임을 명시
 		* `@Getter` / `@Setter`
+			* lombok에서 제공
+			* 별도의 코드 없이 Getter 및 Setter를 자동 생성
+			* <span style="background:rgba(240, 107, 5, 0.2)"> lombok이 뭐지?</span>
+			* <span style="background:rgba(240, 107, 5, 0.2)">Getter, Setter 작동 메커니즘이 정확히 뭐지?</span>
 		* 빌더 패턴
+			* 빌더 패턴을 사용하면 생성자를 사용하는 것보다 더 편리하다
 			* `@Builder`
 			* `@NoArgsConstructor(access = AccessLevel.PROTECTED)`
 			* `@AllArgsConstructor`
 	* Primary Key 속성 부여 어노테이션
+		* <span style="background:rgba(240, 107, 5, 0.2)">워크북에는 기본 키를 만드는 방법에 여러가지가 있다고 했는데, 구체적으로 어떤 것들이 있고 각각의 장단점은 무엇인지?</span>
 		* `@GeneratedValue(strategy = GenerationType.IDENTITY)`
+			* JPA가 통신 대상 DBMS의 방식에 따르겠다는 의미(ex. MySQL을 사용하기로 했다면, MySQL의 방식을 따르게 된다. <span style="background:rgba(240, 107, 5, 0.2)">-> 근데.... 뭔 방식을 따른다는거지? 데이터 포맷? 문법?</span>)
+
+
+##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
 
 
 
-#### 추가 공부
-* 디렉토리 컨벤션
-	*
 
-##### 느낀 점, 추가로 더 공부해보고 싶은 것
 
+
+###### 참고자료
+* 빌더 패턴
+	https://refactoring.guru/ko/design-patterns/builder
