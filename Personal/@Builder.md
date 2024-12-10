@@ -22,7 +22,57 @@ Person person = Person.builder()
 		* <span style="background:rgba(240, 107, 5, 0.2)">어떻게? 어떤식으로?</span>
 	* 메서드: 특정 메서드에 적용하여, 해당 메서드를 호출하는 빌더를 생성
 
-* @Builder가 생성하는 7가지 요소()
+* @Builder가 생성하는 7가지 요소
+	* @Builder를 메서드에 적용하면 다음 7가지 요소가 자동으로 생성된다.
+	* String name, int age를 매개변수로 받는 foo라는 메서드에, @Builder를 적용해보자.
+	1. **내부 정적 클래스**
+		* 메서드 이름에 Builder를 붙인 정적 내부 클래스가 생성된다. <span style="background:rgba(240, 107, 5, 0.2)">(어디에?)</span>
+			* ex. 메서드 이름이 foo: FooBuilder라는 이름의 정적 클래스가 만들어진다
+				* public static class FooBuilder{}
+
+	2. **필드 생성**
+		* Builder 클래스(1.) 안에, 메서드의 각 매개변수에 해당하는 non-static, non-final 필드가 생성된다.
+			* <span style="background:rgba(240, 107, 5, 0.2)">non-static, non-final이 의미하는 바가 무엇인가?</span>
+			* ex. 메서드 foo(String name, int age) → FooBuilder 클래스 내부에 name과 age 필드가 만들어진다.
+				* private String name;
+				* private int age;
+
+	3. 기본 생성자
+		* Builder 클래스(1.)에 파라미터가 없는 기본 생성자가 생성된다.
+			* public static class FooBuilder {
+				FooBuilder() {} //package-private 기본 생성자
+				}
+				* <span style="background:rgba(240, 107, 5, 0.2)"> package-private가 무엇인가?</span>
+
+	4. Setter-like 메서드
+		* Builder 클래스(1.)에, 각 필드에 값을 설정할 수 있는 메서드가 생성된다.
+		* 메서드는 필드 이름과 동일한 이름을 가진다. 값을 설정한 후, 빌더 자신(this)을 반환한다.
+			* 이를 통해 체이닝 방식으로 메서드를 호출할 수 있다.
+				* <span style="background:rgba(240, 107, 5, 0.2)">체이닝 방식이 무엇인가?</span>
+
+	5. build() 메서드
+		* 빌더 클래스(1.)에 생성된다.
+		* 여기서 생성된 build() 메서드는 원래 메서드(여기서는 foo)를 호출한다.
+
+```
+public static class FooBuilder {               //1
+	private String name;                       //2
+	private int age;                           //2
+ 
+	Foobuilder(){}                             //3
+
+	public FooBuilder name(String name) {      //4
+		this.name = name;
+		return this;
+	}
+	
+	public FooBuilder age(int age) {           //4
+		this.age = age;
+		return this;
+	}
+}
+```
+``
 
 
 
