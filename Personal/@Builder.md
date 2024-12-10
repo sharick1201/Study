@@ -22,9 +22,10 @@ Person person = Person.builder()
 		* <span style="background:rgba(240, 107, 5, 0.2)">어떻게? 어떤식으로?</span>
 	* 메서드: 특정 메서드에 적용하여, 해당 메서드를 호출하는 빌더를 생성
 
-* @Builder가 생성하는 7가지 요소
-	* @Builder를 메서드에 적용하면 다음 7가지 요소가 자동으로 생성된다.
-	* String name, int age를 매개변수로 받는 foo라는 메서드에, @Builder를 적용해보자.
+### @Builder가 생성하는 7가지 요소
+* @Builder를 메서드에 적용하면 다음 7가지 요소가 자동으로 생성된다.
+* String name, int age를 매개변수로 받는 foo라는 메서드에, @Builder를 적용해보자.
+
 	1. **내부 정적 클래스**
 		* 메서드 이름에 Builder를 붙인 정적 내부 클래스가 생성된다. <span style="background:rgba(240, 107, 5, 0.2)">(어디에?)</span>
 			* ex. 메서드 이름이 foo: FooBuilder라는 이름의 정적 클래스가 만들어진다
