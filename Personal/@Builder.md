@@ -56,15 +56,24 @@ Person person = Person.builder()
 		* Builder 클래스(1.)에 생성된다.
 		* 여기서 생성된 build() 메서드는 원래 메서드(여기서는 foo)를 호출한다. 빌더 클래스의 필드 값을 메서드의 매개변수로 전달한다.
 		* build() 메서드는 원래 메서드가 반환하는 타입을 반환한다.
+			* public Foo build() { return foo(name, age); // 원래 메서드 호출 }
 		* <span style="background:rgba(240, 107, 5, 0.2)"> 이 메서드가 하는 일이 뭔가?</span>
 
 	6. toString() 메서드
 		* Builder 클래스(1.)에 생성된다.
+		* Builder 클래스의 필드 값을 포함한 문자열을 반환한다.
 			* @Override
 				public String toString() { 
 					return "FooBuilder(name=" + this.name + ", age=" + this.age + ")";
 				}
 				* <span style="background:rgba(240, 107, 5, 0.2)">여기 @Override 어노테이션이 붙는 이유는?</span>
+
+	7. buillder() 메서드
+		* 원래 메서드가 정의된 클래스에 생성된다.
+		* 정적 메서드로 생성된다.
+		* 빌더 객체를 생성하고 반환한다.
+			* 
+		* <span style="background:rgba(240, 107, 5, 0.2)">이거는 코드가 명시되지는 않던데, 어디에 어떻게 위치하고 있길래 작동할 수 있는 것인가?</span>
 
 ##### @Builder가 생성하는 요소 예시
 * 원래 메서드가 정의되어 있던 클래스
@@ -96,6 +105,10 @@ public static class FooBuilder {               //1
 	public FooBuilder age(int age) {           //4
 		this.age = age;
 		return this;
+	}
+
+	public Foo build() {                       //5
+		return foo(name, age);
 	}
 
 	@Override
