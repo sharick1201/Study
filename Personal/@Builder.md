@@ -41,20 +41,46 @@ Person person = Person.builder()
 	3. 기본 생성자
 		* Builder 클래스(1.)에 파라미터가 없는 기본 생성자가 생성된다.
 			* public static class FooBuilder {
-				FooBuilder() {} //package-private 기본 생성자
+					FooBuilder() {} //package-private 기본 생성자
 				}
 				* <span style="background:rgba(240, 107, 5, 0.2)"> package-private가 무엇인가?</span>
 
 	4. Setter-like 메서드
-		* Builder 클래스(1.)에, 각 필드에 값을 설정할 수 있는 메서드가 생성된다.
+		* Builder 클래스(1.)에 생성된다.
+		* 각 필드에 값을 설정할 수 있는 메서드가 생성된다.
 		* 메서드는 필드 이름과 동일한 이름을 가진다. 값을 설정한 후, 빌더 자신(this)을 반환한다.
 			* 이를 통해 체이닝 방식으로 메서드를 호출할 수 있다.
 				* <span style="background:rgba(240, 107, 5, 0.2)">체이닝 방식이 무엇인가?</span>
 
 	5. build() 메서드
-		* 빌더 클래스(1.)에 생성된다.
-		* 여기서 생성된 build() 메서드는 원래 메서드(여기서는 foo)를 호출한다.
+		* Builder 클래스(1.)에 생성된다.
+		* 여기서 생성된 build() 메서드는 원래 메서드(여기서는 foo)를 호출한다. 빌더 클래스의 필드 값을 메서드의 매개변수로 전달한다.
+		* build() 메서드는 원래 메서드가 반환하는 타입을 반환한다.
+		* <span style="background:rgba(240, 107, 5, 0.2)"> 이 메서드가 하는 일이 뭔가?</span>
 
+	6. toString() 메서드
+		* Builder 클래스(1.)에 생성된다.
+			* @Override
+				public String toString() { 
+					return "FooBuilder(name=" + this.name + ", age=" + this.age + ")";
+				}
+				* <span style="background:rgba(240, 107, 5, 0.2)">여기 @Override 어노테이션이 붙는 이유는?</span>
+
+##### @Builder가 생성하는 요소 예시
+* 원래 메서드가 정의되어 있던 클래스
+```
+public class bar {
+
+
+	public Foo()
+
+	public static FooBuilder builder() {       //7
+	    return new FooBuilder();
+	}
+}
+```
+
+* 어노테이션으로 인해 생성된 Builder 클래스(1.)
 ```
 public static class FooBuilder {               //1
 	private String name;                       //2
@@ -71,9 +97,14 @@ public static class FooBuilder {               //1
 		this.age = age;
 		return this;
 	}
+
+	@Override
+	public String toString() {                 //6
+		return "FooBuilder(name=" + this.name + ", age=" + this.age + ")";
+	}
 }
 ```
-``
+
 
 
 
