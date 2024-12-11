@@ -17,6 +17,7 @@ Person person = Person.builder()
 	
 * @Builder 는 클래스, 생성자, 메서드에 붙일 수 있다
 	* 클래스: 클래스 전체에 적용하여 해당 클래스의 모든 필드를 대상으로 빌더를 생성
+		* 클래스에 `@AllArgsConstructor(access = AccessLevel.PACKAGE)`를 추가하고, 이 생성자에 `@Builder`를 적용한 것처럼 동작한다.
 		* <span style="background:rgba(240, 107, 5, 0.2)">필드가 정확히 뭐지</span>
 	* 생성자: 특정 생성자에 적용하여, 해당 생성자를 기반으로 빌더를 생성
 		* <span style="background:rgba(240, 107, 5, 0.2)">어떻게? 어떤식으로?</span>
@@ -67,21 +68,26 @@ Person person = Person.builder()
 					return "FooBuilder(name=" + this.name + ", age=" + this.age + ")";
 				}
 				* <span style="background:rgba(240, 107, 5, 0.2)">여기 @Override 어노테이션이 붙는 이유는?</span>
+				* <span style="background:rgba(240, 107, 5, 0.2)"> 이건 어디에 어떻게 쓰임?</span>
 
 	7. buillder() 메서드
 		* 원래 메서드가 정의된 클래스에 생성된다.
 		* 정적 메서드로 생성된다.
 		* 빌더 객체를 생성하고 반환한다.
-			* 
+			* public static FooBuilder builder() { return new FooBuilder(); }
 		* <span style="background:rgba(240, 107, 5, 0.2)">이거는 코드가 명시되지는 않던데, 어디에 어떻게 위치하고 있길래 작동할 수 있는 것인가?</span>
 
 ##### @Builder가 생성하는 요소 예시
 * 원래 메서드가 정의되어 있던 클래스
 ```
-public class bar {
+import lombok.Builder;
 
+public class Example {
 
-	public Foo()
+	@Builder
+	public Foo(String name, int age) {
+	return "Hello, " + name + "! You are " + age + " years old.";
+	}
 
 	public static FooBuilder builder() {       //7
 	    return new FooBuilder();
@@ -117,7 +123,25 @@ public static class FooBuilder {               //1
 	}
 }
 ```
+##### 예시 실행
+```
+public static void main(String[] args) {
+	String greeting = Example.builder()
+								.name("Alice")
+								.age(25)
+								.build(); 
+	System.out.println(greeting);
+}
+```
+* 출력 결과:
+	`Hello, Alice! You are 25 years old`
 
 
 
+* @Builder가 생성하는 7가지 요소 중, 이미 존재하는 요소는 생성을 자동으로 생략한다.
+	* ex. 클래스에 이미 FooBuilder라는 클래스가 있다면, Lombok은 FooBuilder 클래스(1.)를 새로 생성하지 않고 이미 존재하는 FooBuilder 클래스에 필드와 메서드를 추가하고자 한다.
+		* 이때, 이미 존재하는 FooBuilder 클래스에 @Builder가 생성하고자 하는 필드나 메서드도 이미 있다면 Lombok은 해당 필드나 메서드를 새로이 생성하지 않는다.
+
+* Builder 클래스에는 Lombok의 다른 어노테이션을 사용할 수 없다.
+	* 왜? Lombok의 다른 어노테이션이 Builder 클래스를 처리하는 방식과 충돌하는 경우를 방지하기 위해서이다.
 
