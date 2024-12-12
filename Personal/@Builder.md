@@ -195,6 +195,8 @@ public static void main(String[] args) {
 	* <span style="background:rgba(240, 107, 5, 0.2)">추가설명, 예시 필요</span>
 
 #### @Builder.Default
-
+* @Builder만 사용 시, 특정 필드 또는 매개변수가 빌드 과정에서 설정되지 않은 경우 기본값으로 0, null, false가 설정된다.
+* 그런데 내가 설정되지 않는 필드/매개변수의 기본값을 커스터마이징하고 싶다면, @Builder.Default를 사용하여 바꿀 수 있다.
+* 클래스에 @Builder
 
 #### @Singular
