@@ -188,7 +188,11 @@ public static void main(String[] args) {
 
 ### 추가 어노테이션
 #### @Builder.ObtainVia
-
+* 어디에? @Builder를 생성자나 메서드에 적용하는 경우에 사용 가능하다.
+* 어떻게? 매개변수 또는 필드에 @Builder.ObtainVia 어노테이션을 추가하면 사용 가능하다.
+* 왜? 이를 통해 해당 값을 다른 방식으로 얻을 수 있다.
+	* ex. 특정 메서드를 호출하여 값을 설정하도록 설정할 수 있다.
+	* <span style="background:rgba(240, 107, 5, 0.2)">추가설명, 예시 필요</span>
 
 #### @Builder.Default
 
