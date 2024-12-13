@@ -197,6 +197,10 @@ public static void main(String[] args) {
 #### @Builder.Default
 * @Builder만 사용 시, 특정 필드 또는 매개변수가 빌드 과정에서 설정되지 않은 경우 기본값으로 0, null, false가 설정된다.
 * 그런데 내가 설정되지 않는 필드/매개변수의 기본값을 커스터마이징하고 싶다면, @Builder.Default를 사용하여 바꿀 수 있다.
-* 클래스에 @Builder
-
+* 어떻게? 클래스에 @Builder를 적용한 경우, 필드에 기본값을 직접 지정하고, @Builder.Default를 추가한다.
+	* ex. `@Builder.Default private final long created = System.currentTimeMillis();`
+* 주의:
+	* `@NoArgsConstructor`와 같은 Lombok 생성자를 호출하면 `@Builder.Default`로 설정된 기본값이 유지된다. 그러나 명시적인 생성자를 작성한 경우, 기본값이 설정되지 않으므로 값을 수동으로 설정하거나 Lombok 생성자를 호출해야 한다.
+		*<span style="background:rgba(240, 107, 5, 0.2)"> 어떻게?</span>
+		
 #### @Singular
