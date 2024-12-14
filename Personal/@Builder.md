@@ -188,15 +188,16 @@ public static void main(String[] args) {
 
 ### 추가 어노테이션
 #### @Builder.ObtainVia
-* 어디에? @Builder를 생성자나 메서드에 적용하는 경우에 사용 가능하다.
-* 어떻게? 매개변수 또는 필드에 @Builder.ObtainVia 어노테이션을 추가하면 사용 가능하다.
-* 왜? 이를 통해 해당 값을 다른 방식으로 얻을 수 있다.
+* 왜 쓰는가? 이를 통해 해당 값을 다른 방식으로 얻을 수 있다.
 	* ex. 특정 메서드를 호출하여 값을 설정하도록 설정할 수 있다.
 	* <span style="background:rgba(240, 107, 5, 0.2)">추가설명, 예시 필요</span>
+* 어디에? @Builder를 생성자나 메서드에 적용하는 경우에 사용 가능하다.
+* 어떻게? 매개변수 또는 필드에 @Builder.ObtainVia 어노테이션을 추가하면 사용 가능하다.
+
 
 #### @Builder.Default
 * @Builder만 사용 시, 특정 필드 또는 매개변수가 빌드 과정에서 설정되지 않은 경우 기본값으로 0, null, false가 설정된다.
-* 그런데 내가 설정되지 않는 필드/매개변수의 기본값을 커스터마이징하고 싶다면, @Builder.Default를 사용하여 바꿀 수 있다.
+* 왜 쓰는가? 내가 설정되지 않는 필드/매개변수의 기본값을 커스터마이징하고 싶다면, @Builder.Default를 사용하여 바꿀 수 있다.
 * 어떻게? 클래스에 @Builder를 적용한 경우, 필드에 기본값을 직접 지정하고, @Builder.Default를 추가한다.
 	* ex. `@Builder.Default private final long created = System.currentTimeMillis();`
 * 주의:
@@ -204,3 +205,5 @@ public static void main(String[] args) {
 		*<span style="background:rgba(240, 107, 5, 0.2)"> 어떻게?</span>
 		
 #### @Singular
+* 왜 쓰는가?
+* 어떻게? 컬렉션 필드나 매개변수에
