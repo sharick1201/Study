@@ -215,6 +215,8 @@ public static void main(String[] args) {
 		 * 초기화 메서드
 			* ex. `clearJobs()`
 			* <span style="background:rgba(240, 107, 5, 0.2)">자동으로 컬렉션 타입 필드로 저장이 되는 건가? 하나의 요소만 있더라도?</span>
+		* 참고: setter 메서드(컬렉션을 통째로 설정 또는 교체)는 생성되지 않는다.
+			→ 컬렉션 자체를 덮어쓰는 작업은 불가능하다.
 
 * 어떻게? 컬렉션 필드나 매개변수에 @Singular를 추가한다.
 ```
@@ -229,3 +231,11 @@ Example example = Example.builder()
     .item("Item2")  // 또 다른 단일 요소 추가
     .build();
 ```
+
+* 빌더에서 생성된 컬렉션의 특징
+	* Immutable(불변)하다. → 컬렉션은 수정 불가능하다
+		* <span style="background:rgba(240, 107, 5, 0.2)">수정 가능하게 만드는 방법은 없나?</span>
+		* <span style="background:rgba(240, 107, 5, 0.2)">수정 가능하게 만드는 게 좋은 케이스들에는 뭐가 있을까? 그러니까 수정 가능하게 하는 방법을 모색하는게 의미가 있냐는 취지에서 나온 질문.</span>
+	* build() 이후 추가 메서드나 clear() 메서드를 호출해도 이미 생성된 객체에는 영향을 줄 수 없다. 대신, 다시 build()를 다시 호출하면 새로운 컬렉션이 생성된다.
+	* 컬렉션은 **효율적이고 최소한의 메모리**를 사용하도록 최적화된 형태로 생성된다.
+		* <span style="background:rgba(240, 107, 5, 0.2)">어떻게?</span>
