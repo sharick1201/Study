@@ -207,5 +207,25 @@ public static void main(String[] args) {
 #### @Singular
 * 왜 쓰는가?
 	* 컬렉션 타입 필드(List, Set, Map 등)에 빌더 패턴을 사용할 수 있게 된다.
-	* 단일 요소(하나의 값)를 추가하는 메서드와 다중 요소(여러 값)를 추가하는 메서드를 자동으로 생성할 수 있다.
+	* 아래 메서드가 자동으로 생성된다.
+		* 단일 요소(하나의 값)를 추가하는 메서드
+			* ex. String job이라는 속성이 있을 때, `addJob(String job)`
+		* 다중 요소(여러 값)를 추가하는 메서드
+			* ex. `addJobs(Collection<String> jobs)`
+		 * 초기화 메서드
+			* ex. `clearJobs()`
+			* <span style="background:rgba(240, 107, 5, 0.2)">자동으로 컬렉션 타입 필드로 저장이 되는 건가? 하나의 요소만 있더라도?</span>
+
 * 어떻게? 컬렉션 필드나 매개변수에 @Singular를 추가한다.
+```
+@Builder
+public class Example {
+    @Singular
+    private final List<String> items;
+}
+
+Example example = Example.builder()
+    .item("Item1")  // 단일 요소 추가
+    .item("Item2")  // 또 다른 단일 요소 추가
+    .build();
+```
