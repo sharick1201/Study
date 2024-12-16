@@ -243,15 +243,22 @@ Example example = Example.builder()
 
 * 지원되는 컬렉션 타입
 1. `java.util` 패키지:
-    - `Iterable`, `Collection`, `List`, `Set`, `SortedSet`, `NavigableSet`, `Map`, `SortedMap`, `NavigableMap`
+    - `Iterable`, `Collection`, `List`:  
+	    일반적으로 `ArrayList` 기반의 불변 컬렉션으로 생성
+	- `Set`, `SortedSet`, `NavigableSet`:  
+	    `HashSet` 또는 `TreeSet` 기반의 불변 컬렉션으로 생성 → <span style="background:rgba(240, 107, 5, 0.2)">HashSet, TreeSet이 모지</span>
+	- `Map`, `SortedMap`, `NavigableMap`:  
+	    `HashMap` 또는 `TreeMap` 기반의 불변 컬렉션으로 생성됩니다. → <span style="background:rgba(240, 107, 5, 0.2)">HashMap, TreeMap은 또 모지</span>
 2. 구아바(Guava)의 `com.google.common.collect` 패키지:
-    - `ImmutableCollection`, `ImmutableList`, `ImmutableSet`, `ImmutableMap`, `ImmutableTable` 등
+    - `ImmutableCollection`, `ImmutableList`, `ImmutableSortedSet`,  `ImmutableMap`, `ImmutableBiMap`, `ImmutableSortedMap`, `ImmutableTable`
+		구아바의 빌더 기능을 활용하여 생성
+		<span style="background:rgba(240, 107, 5, 0.2)">나중에 구아바도 좀 공부해보고 싶구나</span>
 
 
 
 
 
-1. **단수형 메서드 이름 자동 생성**  
+2. **단수형 메서드 이름 자동 생성**  
     컬렉션 이름이 영어 복수형인 경우, Lombok은 자동으로 단수형 이름을 생성한다.
     예: `statuses` → `status`  
     단수형 이름을 명시적으로 지정하려면 `@Singular("axis")`와 같이 설정하면 된다.
