@@ -239,3 +239,22 @@ Example example = Example.builder()
 	* build() 이후 추가 메서드나 clear() 메서드를 호출해도 이미 생성된 객체에는 영향을 줄 수 없다. 대신, 다시 build()를 다시 호출하면 새로운 컬렉션이 생성된다.
 	* 컬렉션은 **효율적이고 최소한의 메모리**를 사용하도록 최적화된 형태로 생성된다.
 		* <span style="background:rgba(240, 107, 5, 0.2)">어떻게?</span>
+
+
+* 지원되는 컬렉션 타입
+1. `java.util` 패키지:
+    - `Iterable`, `Collection`, `List`, `Set`, `SortedSet`, `NavigableSet`, `Map`, `SortedMap`, `NavigableMap`
+2. 구아바(Guava)의 `com.google.common.collect` 패키지:
+    - `ImmutableCollection`, `ImmutableList`, `ImmutableSet`, `ImmutableMap`, `ImmutableTable` 등
+
+
+
+
+
+1. **단수형 메서드 이름 자동 생성**  
+    컬렉션 이름이 영어 복수형인 경우, Lombok은 자동으로 단수형 이름을 생성한다.
+    예: `statuses` → `status`  
+    단수형 이름을 명시적으로 지정하려면 `@Singular("axis")`와 같이 설정하면 된다.
+    
+2. **`null` 컬렉션 무시**  
+    `ignoreNullCollections = true`를 설정하면, `null` 컬렉션이 전달되었을 때 무시된다.
