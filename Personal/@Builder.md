@@ -255,41 +255,33 @@ Example example = Example.builder()
 		<span style="background:rgba(240, 107, 5, 0.2)">나중에 구아바도 좀 공부해보고 싶구나</span>
 
 
-### 컬렉션 이름 규칙
-
-- **자동 단수화(Singularization)**  
-    * `@Singular`이 적용된 컬렉션 이름이 영어 복수형일 경우, Lombok은 이를 자동으로 **단수형**으로 변환하여 단일 요소 추가 메서드 이름을 생성한다.
-	    * ex.
-		    `@Singular`
-		    `private List<String> statuses;`
-	    → `addStatus(String status)`라는 메서드 생성됨
+* 컬렉션 이름 규칙
+	- 자동 단수화(Singularization)
+	    * `@Singular`이 적용된 컬렉션 이름이 영어 복수형일 경우, Lombok은 이를 자동으로 단수형으로 변환하여 단일 요소 추가 메서드 이름을 생성한다.
+		    * ex.
+			    `@Singular`
+			    `private List<String> statuses;`
+		    → `addStatus(String status)`라는 메서드 생성됨
+	    
+	- 명시적 단수 이름 지정
+	    * 영어 단수화 규칙이 적용되지 않거나, 이름이 모호한 경우 Lombok이 오류를 발생시킨다.
+	    * 이 경우 단수 이름을 명시적으로 지정해야 한다.
+		    * ex.
+				`@Singular("axis")
+				`private List<Line> axes;`
+		    → `addAxis(Line axis)`라는 메서드 생성됨
     
-- **명시적 단수 이름 지정**  
-    * 영어 단수화 규칙이 적용되지 않거나, 이름이 모호한 경우 Lombok이 오류를 발생시킨다.
-    * 이 경우 단수 이름을 명시적으로 지정해야 한다.
-	    * ex.
-			`@Singular("axis")
-			`private List<Line> axes;`
-	    → `addAxis(Line axis)`라는 메서드 생성됨
-    
+### 옵션
+#### 1. `ignoreNullCollections`
+-  `addAll()` 메서드에 `null` 컬렉션을 전달하면 `NullPointerException`이 발생한다.
+- 하지만 `@Singular(ignoreNullCollections = true)`를 설정하면, `null` 컬렉션은 무시된다. →즉, 아무 작업도 하지 않은 채로 메서드가 종료된다.
 
----
-
-### **옵션**
-
-#### **1. `ignoreNullCollections`**
-
-- 기본적으로, `addAll()` 메서드에 `null` 컬렉션을 전달하면 `NullPointerException`이 발생합니다.
-- 하지만 `@Singular(ignoreNullCollections = true)`를 설정하면, `null` 컬렉션은 무시됩니다.  
-    즉, 아무 작업도 하지 않고 메서드가 종료됩니다.
-
-#### **2. `setterPrefix`**
-
-- 빌더 메서드 이름에 접두어를 추가할 수 있습니다.  
-    예: `setterPrefix = "with"`로 설정하면 다음과 같은 메서드가 생성됩니다:
-    - `withName`: 단일 요소 추가
-    - `withNames`: 다중 요소 추가
-    - `clearNames`: 컬렉션 초기화
+#### 2. `setterPrefix`
+- 빌더 메서드 이름에 접두어를 추가할 수 있다.
+    * ex. `setterPrefix = "with"`로 설정하면 다음 메서드가 생성:
+	    - `withName`: 단일 요소 추가
+	    - `withNames`: 다중 요소 추가
+	    - `clearNames`: 컬렉션 초기화
 
 ---
 
