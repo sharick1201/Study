@@ -14,4 +14,8 @@
 	* <span style="background:rgba(240, 107, 5, 0.2)">어떤 구성 요소?</span>
 
 ### @AllArgsConstructor
-* *
+* 클래스의 모든 필드를 초기화하는 생성자를 만든다.
+* 왜 씀? - 모든 필드를 한 번에 초기화해야 할 때 유용하다. 
+	* ex. DTO나 VO처럼 데이터를 담는 객체를 생성할 때
+		* <span style="background:rgba(240, 107, 5, 0.2)">VO가 정확히 뭐지</span>
+	* 
