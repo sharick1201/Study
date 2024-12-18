@@ -23,7 +23,7 @@ Person person = Person.builder()
 			* Lombok이 생성자를 생성하도록 허용했을 경우 (@NoArgsConstructor를 사용한 경우 포함)
 		* 명시적으로 생성자를 작성했다면, 클래스가 아닌 생성자에 @Builder를 적용해야 한다.
 		* **참고**: 클래스에 `@Value`와 `@Builder`를 함께 적용하면, `@Builder`가 생성하려는 패키지-프라이빗 생성자가 `@Value`가 생성하려는 생성자를 덮어쓴다.
-		* <span style="background:rgba(240, 107, 5, 0.2)">필드가 정확히 뭐지</span>
+			* <span style="background:rgba(240, 107, 5, 0.2)">변수랑 필드의 차이점이 있나? 이렇게 부르는 이유는 뭐지?</span>
 		
 	* 생성자: 특정 생성자에 적용하여, 해당 생성자를 기반으로 빌더를 생성
 		* 이때 생성자는 사실상 정적 메서드처럼 동작하게 된다.
