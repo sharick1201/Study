@@ -278,7 +278,7 @@ Example example = Example.builder()
 
 #### 2. `setterPrefix`
 - 빌더 메서드 이름에 접두어를 추가할 수 있다.
-    * ex. `setterPrefix = "with"`로 설정하면 다음 메서드가 생성:
+    * ex. `setterPrefix = "with"`로 설정하면 다음 메서드들이 생성된다:
 	    - `withName`: 단일 요소 추가
 	    - `withNames`: 다중 요소 추가
 	    - `clearNames`: 컬렉션 초기화
