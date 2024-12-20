@@ -1,3 +1,8 @@
+[[5주차) JPA 기초 및 프로젝트 구조]] 공부 중 보다 더 자세히 알고 싶어서 문서 개설
+
+---
+
+함께 보면 좋은 문서:
 [[생성자]]
 
 ----
@@ -20,14 +25,14 @@
 			* 여기서 "실제로 그 필드가 null이 아닌지 확인"하는 작업을 초기화 검사라고 한다.
 * 왜 씀? Hibernate나 Service Provider Interface(SPI)와 같은 Java 구성 요소는 매개변수가 없는 생성자를 요구하는 경우가 많으므로. 이 주석은 주로 `@Data` 또는 다른 생성자 생성 주석과 함께 쓰인다.
 	* <font color="#a5a5a5">Hibernate, SPI는 왜 매개변수 없는 생성자를 요구하는가? </font>
-		* Hibernate: ORM 프레임워크인 Hibernate는 엔티티 객체를 생성할 때 리플렉션을 사용해서 기본 생성자를 호출한다. 이때 기본 생성자가 없으면 Hibernate가 객체를 생성할 수 없다.
-		- Service Provider Interface (SPI): Java에서 서비스 로더나 다른 구성 요소를 통해 객체를 로드할 때, 기본 생성자를 요구하는 경우가 많아.
+		* Hibernate: 엔티티 객체를 생성할 때 리플렉션을 사용해서 기본 생성자를 호출한다. 이때 기본 생성자가 없으면 Hibernate가 객체를 생성할 수 없다.
+		- SPI: Java에서 서비스 로더나 다른 구성 요소를 통해 객체를 로드할 때, 기본 생성자를 요구하는 경우가 많다.
 
 ### @AllArgsConstructor
 * 클래스의 모든 필드를 초기화하는 생성자를 만든다.
 * 왜 씀? 모든 필드를 한 번에 초기화해야 할 때 유용하다. 
 	* ex. DTO나 VO처럼 데이터를 담는 객체를 생성할 때
-		* <span style="background:rgba(240, 107, 5, 0.2)">VO가 정확히 뭐지</span>
+		* [[DTO & VO]]
 ```
 @AllArgsConstructor
 public class Product {
