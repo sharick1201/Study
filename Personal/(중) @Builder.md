@@ -313,7 +313,21 @@ System.out.println(example);
 ```
 #### 2. 단수 이름 명시
 ```
-`import lombok.Builder; import lombok.Singular; import java.util.List;  @Builder public class Example {     @Singular("axis")     private List<String> axes; }  // 빌더 사용 Example example = Example.builder()     .axis("X")  // 단일 요소 추가     .axis("Y")  // 또 다른 단일 요소 추가     .build();`
+import lombok.Builder;
+import lombok.Singular;
+import java.util.List;
+
+@Builder
+public class Example {     
+	@Singular("axis")
+	private List<String> axes;
+}
+
+// 빌더 사용
+Example example = Example.builder()     
+							.axis("X")  // 단일 요소 추가     
+							.axis("Y")  // 또 다른 단일 요소 추가     
+							.build();`
 ```
 #### 3. `ignoreNullCollections` 사용
 ```

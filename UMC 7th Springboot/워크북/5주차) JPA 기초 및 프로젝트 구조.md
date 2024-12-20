@@ -76,10 +76,10 @@
 
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
 
-* [[Lombok]]
-* [[Builder 패턴]]
-* [[@Builder]]
-* [[@NoArgsConstructor & @AllArgsConstructor]]
+* [[(미) Lombok]]
+* [[(중) Builder 패턴]]
+* [[(중) @Builder]]
+* [[(중) @NoArgsConstructor & @AllArgsConstructor]]
 * [[생성자]]
 
 
