@@ -252,7 +252,7 @@ Example example = Example.builder()
 2. 구아바(Guava)의 `com.google.common.collect` 패키지:
     - `ImmutableCollection`, `ImmutableList`, `ImmutableSortedSet`,  `ImmutableMap`, `ImmutableBiMap`, `ImmutableSortedMap`, `ImmutableTable`
 		구아바의 빌더 기능을 활용하여 생성
-		<span style="background:rgba(240, 107, 5, 0.2)">나중에 구아바도 좀 공부해보고 싶구나</span>
+		* <span style="background:rgba(240, 107, 5, 0.2)">나중에 구아바도 좀 공부해보고 싶구나</span>
 
 
 * 컬렉션 이름 규칙
