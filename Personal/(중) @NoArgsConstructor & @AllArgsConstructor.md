@@ -50,4 +50,21 @@ public class Product {
 
 
 #### staticName 옵션
-* 음? 전반적으로모르겟음 머라하는지...
+* `@AllArgsConstructor`에 붙어 있는 옵션
+* 생성자를 직접 호출하는 대신 정적 메서드를 통해 객체를 생성할 수 있다.
+```
+@AllArgsConstructor(staticName = "of")
+public class Product {
+    private String name;
+    private double price;
+    private int quantity;
+}
+
+// 객체 생성
+Product product = Product.of("Laptop", 1500.0, 10);
+
+```
+* 왜 씀?
+	* 코드 가독성이 향상되고 의미가 보다 명확해진다.
+	* 추가적인 로직을 삽입할 수 있게 된다. 정적 메서드 내부에, 객체 생성 전 검증 로직이나 변환 로직을 추가 가능하다.
+	* 원하는 이름을 부여할 수 있다. 생성자 이름은 고정되어 있다는 점에서 상반된다.
