@@ -25,7 +25,7 @@
 * 왜 씀? Hibernate나 Service Provider Interface(SPI), JPA와 같은 Java 구성 요소와, Spring 또는 Jackson같은 프레임워크는 매개변수가 없는 생성자를 요구하는 경우가 많으므로. → <u>프레임워크와 호환성을 유지하기 위해 사용</u>된다고 보면 되겠다.
 	* 이 주석은 주로 `@Data` 또는 다른 생성자 생성 주석과 함께 쓰인다.
 	* [[(미) Hibernate]]
-	* [[Hibernate, SPI, JPA는 왜 매개변수 없는 생성자를 요구하는가?]]
+	* [[Hibernate, SPI는 왜 매개변수 없는 생성자를 요구하는가?]]
 	* Spring 프레임워크는 왜 매개변수 없는 생성자를 요구하는가?
 		* 
 
