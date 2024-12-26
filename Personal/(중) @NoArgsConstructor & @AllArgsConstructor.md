@@ -30,7 +30,10 @@
 		* 
 
 #### AccessLevel 옵션
-
+접근 제어자를 의미한다.
+* (access = AccessLevel.PROTECTED)
+	* 생성자의 접근 수준: PROTECTED
+	* 같은 패키지 내의 다른 클래스 또는 이 클래스를 상속받은 자식클래스에서만 접근 가능하다.
 
 
 ### @AllArgsConstructor
