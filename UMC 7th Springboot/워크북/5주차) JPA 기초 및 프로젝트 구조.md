@@ -72,6 +72,17 @@
 		* <span style="background:rgba(240, 107, 5, 0.2)">워크북에는 기본 키를 만드는 방법에 여러가지가 있다고 했는데, 구체적으로 어떤 것들이 있고 각각의 장단점은 무엇인지?</span>
 		* `@GeneratedValue(strategy = GenerationType.IDENTITY)`
 			* JPA가 통신 대상 DBMS의 방식에 따르겠다는 의미(ex. MySQL을 사용하기로 했다면, MySQL의 방식을 따르게 된다. <span style="background:rgba(240, 107, 5, 0.2)">-> 근데.... 뭔 방식을 따른다는거지? 데이터 포맷? 문법?</span>)
+	* enum
+		* @Enumerated(EnumType.STRING)
+			* EnumType의 기본 값은 ORDINAL
+				* enum의 순서가 저장된다.
+				* enum의 순서를 바꾸게 될 경우 에러 발생하므로 STRING을 사용하는 게 좋다.
+	* 모든 엔티티에서 사용하는 속성을 작성하는 효율적인 방법
+		* 공통되는 속성들을 작성한 추상 클래스를 만들어주고, 이를 다른 엔티티 클래스에 상속시킨다.
+			* <span style="background:rgba(240, 107, 5, 0.2)">추상 클래스에 적힌 @MappedSuperclass, @EntityListeners(AuditingEntityListener.class)는 뭐지?</span>
+		* JpaAuditing 사용이 가능하도록, Application 클래스에 @EnableJpaAuditing 어노테이션을 추가한다.
+			* JpaAuditing이 뭐지
+				* JPA에서 엔티티의 생성 및 수정 시간, 생성자 및 수정자를 자동으로 추적하고 기록하는 기능이다. 데이터베이스의 레코드를 언제, 누가 생성했는지 쉽게 관리할 수 있다.
 
 
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
@@ -81,6 +92,10 @@
 * [[(중) @Builder]]
 * [[(중) @NoArgsConstructor & @AllArgsConstructor]]
 * [[생성자]]
+* [[(미) Hibernate]]
+* [[(중) DTO & VO]]
+* [[JPA와 Hibernate의 관계]]
+* [[Hibernate, SPI는 왜 매개변수 없는 생성자를 요구하는가?]]
 
 
 
