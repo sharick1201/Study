@@ -84,6 +84,7 @@
 			* JpaAuditing이 뭐지
 				* JPA에서 엔티티의 생성 및 수정 시간, 생성자 및 수정자를 자동으로 추적하고 기록하는 기능이다. 데이터베이스의 레코드를 언제, 누가 생성했는지 쉽게 관리할 수 있다.
 	* 매핑 테이블 설계
+	* 연관 관계 매핑
 	* 칼럼에 대한 세부 설정
 		* <span style="background:rgba(240, 107, 5, 0.2)">enum 타입에 붙는, @Column(columnDefinition = "VARCHAR(15) DEFAULT '내용') 이것 뭐지? </span>
 
@@ -92,12 +93,17 @@
 
 * 테이블, BaseEntity, enum, 매핑 테이블 모두 작성 후 & 연관 관계 매핑 전, 테이블 생성이 모두 잘 되는지 확인하기 위해 첫 실행.
 	* 테이블 생성 중 SQLSyntaxError 2번 발생. 프로그램이 작동 중지되지는 않음.
-	* MySQLworkbench로 확인해보니, 
-		* Inquiry
-		* Mission
-		* 
+	* MySQLworkbench로 확인해보니, Inquiry, Mission 테이블이 생성되지 않았다.
+		* Inquiry 테이블의 경우:
+			* Enum 타입의 inquiryCategory 속성 생성 중, `@Column(columnDefinition = "VARCHAR(20)")`  어노테이션 적용에서 문제가 발생한 듯하다. 테이블 생성 로그를 살펴보면, `inquiry_category enum ()` 이라 뜬다. "VARCHAR(20)" 이 제대로 적용되지 않았다.
+			* 그러나... 저 문법에는 틀린 게 없었다. 찾아보니 enum은 최소한 하나 이상의 상수를 가져야 해서, 빈 enum은 아무런 의미를 가지지 못하여 발생한 에러였다. 해당 enum 파일에 아무런 값을 넣어두지 않았기 때문에, 에러가 발생하였다.
+			* 해결: InquiryCategory enum에 값 하나를 넣어주었다.
+		* Mission 테이블의 경우:
+			* 로그: `You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'condition varchar(255) not null, end_at datetime(6), point integ' at line 5]`
+			* 이건 condition이라는 속성명이 MySQL의 예약어라 발생한 에러이다.
+			* 해결: 속성명을 criteria 로 바꿔주었다.
 
-
+* *
 
 
 #### 작업 상태
