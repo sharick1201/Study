@@ -88,6 +88,12 @@
 		* <span style="background:rgba(240, 107, 5, 0.2)">enum 타입에 붙는, @Column(columnDefinition = "VARCHAR(15) DEFAULT '내용') 이것 뭐지? </span>
 
 
+### 실습
+* InquiryCategory enum에 내용 아직 안 넣어둔 상태
+
+
+
+
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
 
 * [[(미) Lombok]]
