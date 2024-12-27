@@ -89,12 +89,28 @@
 
 
 ### 실습
+
+* 테이블, BaseEntity, enum, 매핑 테이블 모두 작성 후 & 연관 관계 매핑 전, 테이블 생성이 모두 잘 되는지 확인하기 위해 첫 실행.
+	* 테이블 생성 중 SQLSyntaxError 2번 발생. 프로그램이 작동 중지되지는 않음.
+	* MySQLworkbench로 확인해보니, 
+		* Inquiry
+		* Mission
+		* 
+
+
+
+
+#### 작업 상태
 * InquiryCategory enum에 내용 아직 안 넣어둔 상태
 * store 테이블
     - 영업시간이 요일마다 다른 경우를 처리하기 위하여, 영업시간 테이블 별도로 생성
     - 가게의 임시휴무를 처리하기 위하여, 임시휴무 테이블 별도로 생성
 	이것들 아직 구현 안 한 상태
 * StoreImage, ReviewImage 아직 구현 X
+* memberaddress, storeaddress 아직 구현 X
+	* 테이블로 빼는 게 더 효율적일지, member, store의 속성으로 넣을지?
+* missionAccomplish 매핑 테이블
+	* public LocalDateTime endAt; 이거... 넣는 게 좋을지, startAt에서 마감시간까지 계산해서 보여주는게 더 효율적일지? 뭐가 더 효율적이지? 그래서 일단 빼 둠
 
 
 
