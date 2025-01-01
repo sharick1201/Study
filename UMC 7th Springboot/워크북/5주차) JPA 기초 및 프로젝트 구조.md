@@ -145,6 +145,9 @@ public class Order {
 } 
 ```
 
+* @OneToMany
+	* mappedBy
+	* CasCadeType.ALL
 
 				
 * 칼럼에 대한 세부 설정
@@ -176,7 +179,8 @@ public class Order {
 			* 이건 condition이라는 속성명이 MySQL의 예약어라 발생한 에러이다.
 			* 해결: 속성명을 criteria 로 바꿔주었다.
 
-* *
+* 테이블 간 매핑 후 두 번째 실행
+	* 실습에서 나오지 않은 1:1 매핑은 @OneToOne 어노테이션을 사용하여 매핑해주었다.
 
 ##### 작업 상태
 * InquiryCategory enum에 내용 아직 안 넣어둔 상태
