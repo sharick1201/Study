@@ -112,15 +112,17 @@
 				* 연관 관계 편의 메서드란?
 				
 	* 칼럼에 대한 세부 설정
-		* <span style="background:rgba(240, 107, 5, 0.2)">enum 타입에 붙는, @Column(columnDefinition = "VARCHAR(15) DEFAULT '내용') 이것 뭐지? @Column(length=15) 와의 차이점은 뭐고, 각각 어느 경우에 사용하는 것인가? </span>
+		* <font color="#a5a5a5">enum 타입에 붙는, @Column(columnDefinition = "VARCHAR(15) DEFAULT '내용') 이것 뭐지? @Column(length=15) 와의 차이점은 뭐고, 각각 어느 경우에 사용하는 것인가?</font>
 			 * 둘 다 enum에 사용 가능하다.
 			 * `@Column(nullable = false, length = 40)`
 				 * JPA가 사용하는 기본 속성을 사용하여 칼럼의 제약 조건을 설정한다. 데이터베이스 독립적으로 동작한다.
 				 * 대부분의 경우 이 방식으로 하면 되는 듯!
-			 * `@Column(columnDefinition = "VARCHAR(10)")`
+				 * 그런데... 이 방식은 기본값 설정을 지원하지 않는다!
+			 * `@Column(columnDefinition = "VARCHAR(10)" DEFAULT '내용')`
 				 * JPA가 아닌 직접적인 SQL 정의를 사용하여 데이터베이스 컬럼을 설정한다. 즉, JPA가 자동으로 생성하는 DDL을 무시하고, 명시적으로 지정한 정의를 그대로 사용한다.
 				 * 데이터베이스에 강하게 의존적이라는 단점이 있다. 특정 DBMS에 종속되기 때문에 이식성이 떨어진다. 대신, SQL로 모든 세부사항을 제어 가능하다.
-			* enum 타입 필드는 @Enumerated 어노테이션을 통해 저장 방식을 지정해야 하기 때문에, columnDefinition을 직접 사용하는 경우가 더 일반적이다.
+				 * 기본값 설정을 지원한다.(DEFALUT '내용')
+			* 기본값 설정이 필요하다면, columnDefinition을 사용하는 것이 좋겠다.
 
 
 
