@@ -112,8 +112,42 @@
 							* 만약 단방향 매핑된 상태에서 cascade할 시, 수업을 하나 삭제할 때 그 수업을 수강하는 학생도 모두 삭제될 수 있다.
 			* 양방향 매핑을 하면, 연관 관계 편의 메서드가 필요하게 된다.
 				* 연관 관계 편의 메서드란?
+					* 연관된 엔티티를 추가하거나 제거할 때, 양쪽 엔티티의 상태를 자동으로 업데이트하는 메서드
 				
-	* 칼럼에 대한 세부 설정
+```
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+    // 연관 관계 편의 메서드
+    public void addOrder(Order order) {
+        orders.add(order);
+        order.setUser(this); // 양방향 관계 설정
+    }
+}
+
+@Entity
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    // Getter, Setter
+} 
+```
+
+
+				
+* 칼럼에 대한 세부 설정
 		* <font color="#a5a5a5">enum 타입에 붙는, @Column(columnDefinition = "VARCHAR(15) DEFAULT '내용') 이것 뭐지? @Column(length=15) 와의 차이점은 뭐고, 각각 어느 경우에 사용하는 것인가?</font>
 			 * 둘 다 enum에 사용 가능하다.
 			 * `@Column(nullable = false, length = 40)`
@@ -194,7 +228,7 @@
 		- 다만 두 어노테이션에 설정해둔 길이 제한이 동일한지 확인하는 것이 좋겠다.
 		- 일단 지금은 데이터 위주의 공부이니, @Column만 작성하고 해보도록 하겠다.
 
-
+* 양방향 매핑과 단방향 매핑 더 공부해볼 것.
 
 
 ###### 참고자료
