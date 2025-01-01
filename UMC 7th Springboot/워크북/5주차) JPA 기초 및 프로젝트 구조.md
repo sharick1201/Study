@@ -179,8 +179,11 @@ public class Order {
 			* 이건 condition이라는 속성명이 MySQL의 예약어라 발생한 에러이다.
 			* 해결: 속성명을 criteria 로 바꿔주었다.
 
-* 테이블 간 매핑 후 두 번째 실행
+* 테이블 모두 매핑 후 두 번째 실행
 	* 실습에서 나오지 않은 1:1 매핑은 @OneToOne 어노테이션을 사용하여 매핑해주었다.
+		* 여기에도 fetchType을 적용하는지? 체크해보기
+	* 워크북에서 음식 카테고리는 보통 수정/삭제를 하지 않으므로 단방향으로 매핑하겠다고 했는데, 이 부분이 옳을지 생각해보기. 일단 단방향으로 해둠
+	* 정상 작동
 
 ##### 작업 상태
 * InquiryCategory enum에 내용 아직 안 넣어둔 상태
@@ -189,6 +192,7 @@ public class Order {
     - 가게의 임시휴무를 처리하기 위하여, 임시휴무 테이블 별도로 생성
 	이것들 아직 구현 안 한 상태
 * StoreImage, ReviewImage 아직 구현 X
+* reviewReply 아직 구현 X
 * memberaddress, storeaddress 아직 구현 X
 	* 테이블로 빼는 게 더 효율적일지, member, store의 속성으로 넣을지?
 * missionAccomplish 매핑 테이블
