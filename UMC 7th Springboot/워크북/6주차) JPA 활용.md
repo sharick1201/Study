@@ -130,6 +130,8 @@ error: Could not find class file for 'com.example.umc_workbook_practice.domain.M
 * `com.querydsl:querydsl-jpa:5.0.0:jakarta`는 Hibernate 6.x와 호환된다고 한다. 나는 5.6 버전을 쓰고 있으니 버전 간 충돌이 발생한 것으로 보인다. 그래서 6.x 버전으로 바꿔주었다.
 * 되는... 줄 알았는데 안 된다?
 * Querydsl 컴파일에 계속 실패한다. 변환하는 과정에서 문제가 발생하는 거 같았다.
+* https://11wjdfk.tistory.com/96 시도해도 안 됨... ㅠㅠ
+* 
 ##### 작업 상태
 
 
