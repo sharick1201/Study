@@ -98,54 +98,18 @@
 			* 메서드 체이닝을 통한 복잡한 쿼리 작성에 유리하다.
 
 
-
 ### 실습
 QueryDSL 적용하기
 * 기본 설정
 	* build.gradle에 플러그인과 종속성 명시
 		* <span style="background:rgba(240, 107, 5, 0.2)">설정부에 어떤 설정을 해둔 건지 추가적으로 공부해보기</span>
-	* 잉? gradle build 다시 했는데 Q클래스가 자동으로 생성되지 않았다... 일단 gradle을 clean&build 했는데  build 누르니 이런 에러들이 떴다.
+		* build시켰더니 엔티티 클래스를 전부 못 찾고 있다.
 ```
 error: Could not find class file for 'com.example.umc_workbook_practice.domain.Member'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Review'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.FoodCategory'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Member'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Review'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.FoodCategory'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.common.BaseEntity'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Mission'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Inquiry'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.StoreFoodCategory'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Store'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.InquiryResponse'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.MemberPreference'.
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.MissionAccomplish'.
-11 errors
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.common.BaseEntity'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Mission'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Inquiry'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.StoreFoodCategory'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.Store'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.InquiryResponse'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.MemberPreference'.
-
-error: Could not find class file for 'com.example.umc_workbook_practice.domain.mapping.MissionAccomplish'.
-
+...
+// 모든 엔티티를 못 찾는 중
 ```
 
-* clean -> compileQueryDSL -> build 하니까 build failed... 그런데 다시 또 build 하니까 잘 되었다...;;
-	* 참고: https://lahezy.tistory.com/94
-		* 플러그인은 추가해둔 상태에서 따로 건드리지 않았는데 나의 경우 잘 실행되었다.
 
 ##### 작업 상태
 
