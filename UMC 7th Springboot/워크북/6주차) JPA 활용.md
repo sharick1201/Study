@@ -43,7 +43,7 @@
 	* 성능 저하를 발생시킴
 	* RDB와 객체 지향 패러다임 사이의 간극으로 인해 발생하는 문제
 	* https://incheol-jung.gitbook.io/docs/q-and-a/spring/n+1
-		* 
+		* FetchType.LAZY여도 발생이 가능하다. 연관 관계로 매핑된 객체가 사용될 때 DB에서 정보를 가져오는 것은 동일하기 때문. 발생 시점의 차이가 되겠다.
 
 ### 실습
 
