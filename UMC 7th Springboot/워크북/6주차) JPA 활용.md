@@ -159,6 +159,8 @@ tasks.withType(JavaCompile).configureEach {
   에러가 뜬다. 프로그램은 정상적으로 돌아가긴 하지만, 신경쓰여서 찾아보았다.
 	* https://awesomefrog.tistory.com/168
 		* 의존성을 추가하되, 스프링부트 3 버전에 맞게  Jakarta EE 기반의 Hibernate Validator를 사용해야 한다고 한다. Spring Boot 3.x는 기본적으로 Jakarta EE 기반의 Hibernate Validator 8.x 이상 버전을 사용한다니, 8.0.0으로 의존성 추가하였고 충돌 없이 정상 build 되었다. 어플리케이션을 실행시키니 더 이상 오류가 뜨지 않는다.
+* 나머지는 슥슥 따라하니 결과가 원하는대로 잘 나오는 것을 확인했다.
+	* <span style="background:rgba(240, 107, 5, 0.2)">근데 따라하기만 해서 원리 공부 차근차근 다시 해야할 듯</span>
 	
 
 
