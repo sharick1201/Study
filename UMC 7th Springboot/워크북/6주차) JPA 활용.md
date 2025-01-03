@@ -112,6 +112,9 @@
 			* Q클래스는 엔티티의 필드에 접근할 수 있는 정적 필드를 제공함으로써 쿼리를 작성할 때 코드 기반으로 엔티티 필드에 접근할 수 있도록 한다.
 		* JPAQueryFactory
 			* QueryDSL을 사용하려면 JPAQueryFactory를 통해 쿼리를 작성해야 한다.
+			* 따라서 Bean으로 등록해준다.
+				* <span style="background:rgba(240, 107, 5, 0.2)">JPAQueryFactory 이게 구체적으로 뭐지?</span>
+				* <span style="background:rgba(240, 107, 5, 0.2)">@Bean 공부를 할 필요가 있는 거 같다.</span>
 	
 
 
@@ -131,8 +134,24 @@ error: Could not find class file for 'com.example.umc_workbook_practice.domain.M
 * 되는... 줄 알았는데 안 된다?
 * Querydsl 컴파일에 계속 실패한다. 변환하는 과정에서 문제가 발생하는 거 같았다.
 * https://11wjdfk.tistory.com/96 시도해도 안 됨... ㅠㅠ
-* 
+* build.gradle 에서 `clean` 작업에서 `generated` 디렉토리를 명시적으로 삭제하도록 설정 + `compileJava` 작업 전에 `generated` 디렉토리를 명시적으로 생성(`mkdirs()`)하도록 설정 + 아래 의존성 삭제(명시적으로 Jackson 버전을 지정하면 Spring Boot BOM(빌드 의존성 관리)과 충돌할 가능성이 있다고 한다.)
 
+```
+//  implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'  
+//  implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'  
+//  implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+```
+
+... 하니까 빌드에 에러는 안 뜨는데 Q클래스들이 생성이 안 됐다.
+* annotation processor 설정을 보완했다.
+	* Gradle 태스크(`JavaCompile`)에서 Annotation Processor의 출력 디렉토리를 명확히 지정해야 한다
+```
+tasks.withType(JavaCompile).configureEach {  
+    options.getGeneratedSourceOutputDirectory().set(generated) // Q 클래스 생성 경로 설정  
+}
+```
+
+이러니까 잘 설정되었다! 
 
 
 ##### 작업 상태
