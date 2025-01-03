@@ -153,6 +153,14 @@ tasks.withType(JavaCompile).configureEach {
 
 이러니까 잘 설정되었다! 
 
+* StoreRepository설정...
+	* 평점 검색을 위하여 Store 엔티티에 score 필드 추가, Review 엔티티에 score 필드 추가
+* 근데... 클래스 시작할 때 jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+  에러가 뜬다. 프로그램은 정상적으로 돌아가긴 하지만, 신경쓰여서 찾아보았다.
+	* https://awesomefrog.tistory.com/168
+		* 의존성을 추가하되, 스프링부트 3 버전에 맞게  Jakarta EE 기반의 Hibernate Validator를 사용해야 한다고 한다. Spring Boot 3.x는 기본적으로 Jakarta EE 기반의 Hibernate Validator 8.x 이상 버전을 사용한다니, 8.0.0으로 의존성 추가하였고 충돌 없이 정상 build 되었다. 어플리케이션을 실행시키니 더 이상 오류가 뜨지 않는다.
+	
+
 
 ##### 작업 상태
 
