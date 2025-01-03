@@ -132,6 +132,9 @@ error: Could not find class file for 'com.example.umc_workbook_practice.domain.M
 * Querydsl 컴파일에 계속 실패한다. 변환하는 과정에서 문제가 발생하는 거 같았다.
 * https://11wjdfk.tistory.com/96 시도해도 안 됨... ㅠㅠ
 * 
+
+
+
 ##### 작업 상태
 
 
