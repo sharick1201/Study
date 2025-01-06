@@ -1,6 +1,14 @@
 [[6주차) JPA 활용]] 공부 중, 실습 파트는 따라하는 게 다라서 작용 원리를 좀 더 이해하고 싶어 문서 개설
 
 ----
+QueryDSL을 사용하고자 의 동작 과정을 요약하면 다음과 같다.
+1.	Annotation Processor 동작:
+	* QueryDSL의 Annotation Processor가 컴파일 시점에 JPA 엔티티(예: `User`)를 스캔하여 타입 안전한 Q 클래스(예: `QUser`)를 생성한다.
+	* 이 과정에서 `querydsl-apt`와 Jakarta Persistence API(`jakarta.persistence-api`)가 사용됩니다.
+2.	Q 클래스 저장:
+	•	생성된 Q 클래스는 Gradle 설정에 따라 지정된 경로(`src/main/generated/querydsl`)에 저장됩니다.
+3.	Q 클래스 활용:
+	•	개발자는 생성된 Q 클래스를 사용하여 타입 안전한 쿼리를 작성할 수 있습니다:
 
 ###  1. QueryDSL 기본 설정(플러그인, 종속성 명시)
 build.gradle 파일에 아래와 같이 설정하였다.
@@ -100,7 +108,7 @@ sourceSets {
 	* querydsl-jpa
 		* `implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'`
 		* QueryDSL의 JPA 통합 모듈
-		* QueryDSL이 JPA 엔티티를 기반으로 타입 안전한 Q클래스를 생성하고, JPA 쿼리를 작성할 수 있도록 지원한다.
+		* QueryDSL이 JPA 엔티티를 기반으로 타입 안전한 Q클래스를 생성하고 JPA 쿼리를 작성할 수 있도록 지원한다.
 		* `5.0.0:jakarta`는 Jakarta Persistence API(`jakarta.persistence`)를 기반으로 동작한다.
 			* Spring Boot 3.x 이상에서는 Jakarta API를 사용하므로, 반드시 jakarta classifier(애플리케이션의 구성 요소를 정의하고 구분하는 분류기)를 포함시켜야 한다.
 		
@@ -122,3 +130,8 @@ sourceSets {
 * lombok 설정
 	* `compileOnly 'org.projectlombok:lombok'`
 	* `annotationProcessor 'org.projectlombok:lombok'`
+	* Lombok과 QueryDSL의 Annotation Processor는 함께 사용이 가능하다. 다만, Gradle 설정에서 각각 명확히 분리해야 한다. <span style="background:rgba(240, 107, 5, 0.2)">왜?</span>
+		* 나는 `compileOnly`와 `annotationProcessor`로 분리하여 충돌을 방지했다.
+
+* QueryDSL 관련 gradle 설정
+	* 
