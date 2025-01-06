@@ -3,12 +3,11 @@
 ----
 QueryDSL을 사용하고자 의 동작 과정을 요약하면 다음과 같다.
 1.	Annotation Processor 동작:
-	* QueryDSL의 Annotation Processor가 컴파일 시점에 JPA 엔티티(예: `User`)를 스캔하여 타입 안전한 Q 클래스(예: `QUser`)를 생성한다.
-	* 이 과정에서 `querydsl-apt`와 Jakarta Persistence API(`jakarta.persistence-api`)가 사용됩니다.
+	* QueryDSL의 Annotation Processor가 컴파일 시점에 JPA 엔티티(예: `User`)를 스캔하여 타입 안전한 Q 클래스(예: `QUser`)를 생성한다. 이 과정에서 `querydsl-apt`와 Jakarta Persistence API(`jakarta.persistence-api`)가 사용된다.
 2.	Q 클래스 저장:
-	•	생성된 Q 클래스는 Gradle 설정에 따라 지정된 경로(`src/main/generated/querydsl`)에 저장됩니다.
+	* 생성된 Q 클래스는 Gradle 설정으로 지정한 경로에 저장된다.
 3.	Q 클래스 활용:
-	•	개발자는 생성된 Q 클래스를 사용하여 타입 안전한 쿼리를 작성할 수 있습니다:
+	* 생성된 Q 클래스를 사용하여 타입 안전한 쿼리를 작성할 수 있다.
 
 ###  1. QueryDSL 기본 설정(플러그인, 종속성 명시)
 build.gradle 파일에 아래와 같이 설정하였다.
