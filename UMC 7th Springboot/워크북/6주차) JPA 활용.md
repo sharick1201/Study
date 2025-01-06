@@ -122,7 +122,7 @@
 QueryDSL 적용하기
 * 기본 설정
 	* build.gradle에 플러그인과 종속성 명시
-		* <span style="background:rgba(240, 107, 5, 0.2)">설정부에 어떤 설정을 해둔 건지 추가적으로 공부해보기</span>
+		* <span style="background:rgba(240, 107, 5, 0.2)">설정부에 어떤 설정을 해둔 건지 추가적으로 공부해보기</span> -> [[QueryDSL 적용기]]
 		* build시켰더니 엔티티 클래스를 전부 못 찾고 있다.
 ```
 error: Could not find class file for 'com.example.umc_workbook_practice.domain.Member'.
@@ -161,6 +161,7 @@ tasks.withType(JavaCompile).configureEach {
 		* 의존성을 추가하되, 스프링부트 3 버전에 맞게  Jakarta EE 기반의 Hibernate Validator를 사용해야 한다고 한다. Spring Boot 3.x는 기본적으로 Jakarta EE 기반의 Hibernate Validator 8.x 이상 버전을 사용한다니, 8.0.0으로 의존성 추가하였고 충돌 없이 정상 build 되었다. 어플리케이션을 실행시키니 더 이상 오류가 뜨지 않는다.
 * 나머지는 슥슥 따라하니 결과가 원하는대로 잘 나오는 것을 확인했다.
 	* <span style="background:rgba(240, 107, 5, 0.2)">근데 따라하기만 해서 원리 공부 차근차근 다시 해야할 듯</span>
+		* [[QueryDSL 적용기]] 문서를 개설하여 해당 문서에 정리해두었다.
 	
 
 
@@ -169,7 +170,6 @@ tasks.withType(JavaCompile).configureEach {
 
 
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
-[[QueryDSL 적용기]]
 
 
 

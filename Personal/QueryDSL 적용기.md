@@ -2,9 +2,8 @@
 
 ----
 
-1. QueryDSL 기본 설정
+###  1. QueryDSL 기본 설정(플러그인, 종속성 명시)
 build.gradle 파일에 아래와 같이 설정하였다.
-
 ```
 plugins {  
     id 'java'  
@@ -96,3 +95,30 @@ sourceSets {
        }  
     }}
 ```
+
+* 주요 의존성
+	* querydsl-jpa
+		* `implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'`
+		* QueryDSL의 JPA 통합 모듈
+		* QueryDSL이 JPA 엔티티를 기반으로 타입 안전한 Q클래스를 생성하고, JPA 쿼리를 작성할 수 있도록 지원한다.
+		* `5.0.0:jakarta`는 Jakarta Persistence API(`jakarta.persistence`)를 기반으로 동작한다.
+			* Spring Boot 3.x 이상에서는 Jakarta API를 사용하므로, 반드시 jakarta classifier(애플리케이션의 구성 요소를 정의하고 구분하는 분류기)를 포함시켜야 한다.
+		
+	* querydsl-apt
+		* `annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'`
+		* QueryDSL의 Annotation Processor(코드의 어노테이션을 처리하는 도구)
+		* 컴파일 시점에 JPA 엔티티를 기반으로 Q클래스를 생성한다. 예컨대, `User` 엔티티가 있다면 `QUser`라는 이름의 Q클래스를 생성한다.
+
+* Jakarta API 관련 의존성
+	* jakarta.annotation-api
+		* `annotationProcessor "jakarta.annotation:jakarta.annotation-api"`
+		* Jakarta EE에서 제공하는 어노테이션 API
+		* QueryDSL의 Annotation Processor가 Jakarta EE 환경에서 동작하도록 지원한다.
+	* jakarta.persistence-api
+		* `annotationProcessor "jakarta.persistence:jakarta.persistence-api"`
+		* Jakarta Persistence API
+		* Hibernate 6.x 이상, Spring Boot 3.x 이상에서는 JPA 표준으로 Jakarta Persistence API를 사용한다. 따라서 QueryDSL의 Annotation Processor가 JPA 엔티티를 처리할 때 필요하다.
+	
+* lombok 설정
+	* `compileOnly 'org.projectlombok:lombok'`
+	* `annotationProcessor 'org.projectlombok:lombok'`
