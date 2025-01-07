@@ -133,4 +133,18 @@ sourceSets {
 		* 나는 `compileOnly`와 `annotationProcessor`로 분리하여 충돌을 방지했다.
 
 * QueryDSL 관련 gradle 설정
-	* 
+	* Q클래스 생성 경로 설정
+		* Q클래스가 생성될 디렉토리를 지정한다.
+	* clean 태스크를 통한 Q클래스 삭제
+		* clean 태스크를 설정함으로서 이전에 생성된 Q클래스를 삭제한다.
+		* 이 작업은 gradle로 빌드할 때마다 항상 최신 상태의 Q클래스가 생성되도록 한다.
+	* JavaCompile 태스크에서 Q클래스 경로 설정
+		* Gradle 7.x 이상에서는 `options.getGeneratedSourceOutputDirectory()`를 사용하여 Annotation Processor가 생성한 소스 파일의 출력 경로를 지정한다.
+		* 여기서는 Q 클래스가 지정된 경로에 생성되도록 설정했다.
+	* sourceSets에 Q클래스 경로 추가
+		* Gradle의 SourceSets 설정에 Q클래스 경로를 추가함으로써 Q클래스도 프로젝트 소스 코드로 인식하도록 설정했다.
+
+* 추가 확인 사항
+	* IntelliJ IDEA 설정
+		* IntelliJ IDEA > Preferences > Build, Execution, Deployment > Compiler > Annotation Processors 에서 "Enable annotation processing” 체크박스를 활성화시킨다. 이를 통해 `annotationProcessor`를 사용할 수 있게 된다.
+
