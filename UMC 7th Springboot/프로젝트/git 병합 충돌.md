@@ -118,15 +118,3 @@ IDE 또는 Git 도구를 사용하면 충돌 해결이 더 쉬워질 수 있습�
 3. 수정된 파일 스테이징: `git add [파일명]`
 4. 커밋 생성: `git commit -m "Resolve merge conflicts"`
 
-이 과정을 통해 병합 충돌을 해결하고 프로젝트를 정상적으로 진행할 수 있습니다!
-
-출처
-[1] 깃(Git) 충돌 시 해결 방법 - velog https://velog.io/@euisuk-chung/%EA%B9%83Git-%EC%B6%A9%EB%8F%8C-%EC%8B%9C-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95
-[2] How To Resolve Merge Conflicts in Git - phoenixNAP https://phoenixnap.com/kb/how-to-resolve-merge-conflicts-in-git
-[3] Visual Studio에서 병합 충돌 해결 - Microsoft Learn https://learn.microsoft.com/ko-kr/visualstudio/version-control/git-resolve-conflicts?view=vs-2022
-[4] Git merge conflicts | Atlassian Git Tutorial https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts
-[5] 명령줄을 사용하여 병합 충돌 해결 - GitHub Docs https://docs.github.com/ko/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line
-[6] How to Resolve Merge Conflicts in Git? - Simplilearn.com https://medium.com/@Simplilearn/how-to-resolve-merge-conflicts-in-git-simplilearn-updated-1ea032eeb550
-[7] GitHub에서 병합 충돌 해결 https://docs.github.com/ko/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github
-[8] How do I resolve merge conflicts in a Git repository? - Stack Overflow https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository/7589612
-[9] How to resolve merge conflicts in Git - Graphite.dev https://graphite.dev/guides/how-to-resolve-merge-conflicts-in-git
