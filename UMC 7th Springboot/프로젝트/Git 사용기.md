@@ -35,6 +35,8 @@ feature 브랜치명 형식은 `feature/#(이슈번호)` 로 팀 내에서 통�
 ##### PR 규칙
 main, develop 브랜치 모두 <u>2명</u>의 PR 승인을 요한다.
 
+#### Issue
+이슈도 함께 파서 진행한다. 이슈를 팔 때 이슈에 대한 설명, 작업할 내용(체크박스화), 참고 자료를 기술한다. assignees, label, development(연관 branch)도 함께 설정하여 진행한다. 작업이 완료되면 이슈를 닫는다.
 
 #### clone
-가장 처음 한 git 작업.
+가장 처음 한 git 작업. 
