@@ -24,7 +24,7 @@
 			* 여기서 "실제로 그 필드가 null이 아닌지 확인"하는 작업을 초기화 검사라고 한다.
 * 왜 씀? Hibernate나 Service Provider Interface(SPI), JPA와 같은 Java 구성 요소와, Spring 또는 Jackson같은 프레임워크는 매개변수가 없는 생성자를 요구하는 경우가 많으므로. → <u>프레임워크와 호환성을 유지하기 위해 사용</u>된다고 보면 되겠다.
 	* 이 주석은 주로 `@Data` 또는 다른 생성자 생성 주석과 함께 쓰인다.
-	* [[(미) Hibernate]]
+	* [[Hibernate]]
 	* [[Hibernate, SPI는 왜 매개변수 없는 생성자를 요구하는가?]]
 	* Spring 프레임워크는 왜 매개변수 없는 생성자를 요구하는가?
 		* 
@@ -40,7 +40,7 @@
 * 클래스의 모든 필드를 초기화하는 생성자를 만든다.
 * 왜 씀? 모든 필드를 한 번에 초기화해야 할 때 유용하다. 
 	* ex. DTO나 VO처럼 데이터를 담는 객체를 생성할 때
-		* [[(중) DTO & VO]]
+		* [[DTO & VO]]
 ```
 @AllArgsConstructor
 public class Product {

@@ -1,4 +1,4 @@
-[[(중) @NoArgsConstructor & @AllArgsConstructor]] 공부 중에, DTO나 VO처럼 데이터를 담는 객체를 생성할 때 @AllArgsConstructor를 사용하면 좋다는 문구를 보고... DTO, VO 공부를 좀 더 파고 들어가보고 싶다고 생각되어 문서 개설
+[[@NoArgsConstructor & @AllArgsConstructor]] 공부 중에, DTO나 VO처럼 데이터를 담는 객체를 생성할 때 @AllArgsConstructor를 사용하면 좋다는 문구를 보고... DTO, VO 공부를 좀 더 파고 들어가보고 싶다고 생각되어 문서 개설
 
 ---
 

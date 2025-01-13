@@ -1,4 +1,4 @@
-[[(중) @NoArgsConstructor & @AllArgsConstructor]] 공부 중, @NoArgsContructor를 사용하는 게 좋은 이유가 궁금해서 문서 개설
+[[@NoArgsConstructor & @AllArgsConstructor]] 공부 중, @NoArgsContructor를 사용하는 게 좋은 이유가 궁금해서 문서 개설
 
 ---
 

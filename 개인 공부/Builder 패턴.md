@@ -53,7 +53,7 @@ public class Person {
 * <span style="background:rgba(240, 107, 5, 0.2)">마지막에 build() 메서드는 무슨 역할을 하는 거지?</span>
 
 2. Lombok의 @Builder 사용
-	[[(중) @Builder]]
+	[[@Builder]]
 	* 코드가 간단하다
 	* Lombok이 자동으로 Builder 패턴 코드를 생성해준다.
 ```

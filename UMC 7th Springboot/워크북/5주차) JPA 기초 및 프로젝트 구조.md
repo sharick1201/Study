@@ -203,13 +203,13 @@ public class Order {
 
 ##### 느낀 점, 추가로 더 공부한 것, 더 공부해보고 싶은 것
 
-* [[(미) Lombok]]
-* [[(중) Builder 패턴]]
-* [[(중) @Builder]]
-* [[(중) @NoArgsConstructor & @AllArgsConstructor]]
+* [[Lombok]]
+* [[Builder 패턴]]
+* [[@Builder]]
+* [[@NoArgsConstructor & @AllArgsConstructor]]
 * [[생성자]]
-* [[(미) Hibernate]]
-* [[(중) DTO & VO]]
+* [[Hibernate]]
+* [[DTO & VO]]
 * [[JPA와 Hibernate의 관계]]
 * [[Hibernate, SPI는 왜 매개변수 없는 생성자를 요구하는가?]]
 * Entity 클래스의 최대치 제한 어노테이션
