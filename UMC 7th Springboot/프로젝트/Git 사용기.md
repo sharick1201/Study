@@ -35,10 +35,15 @@ feature 브랜치명 형식은 `feature/#(이슈번호)` 로 팀 내에서 통�
 ##### PR 규칙
 main, develop 브랜치 모두 <u>2명</u>의 PR 승인을 요한다.
 
-#### Issue
+##### Issue
 이슈도 함께 파서 진행한다. 이슈를 팔 때 이슈에 대한 설명, 작업할 내용(체크박스화), 참고 자료를 기술한다. assignees, label, development(연관 branch)도 함께 설정하여 진행한다. 작업이 완료되면 이슈를 닫는다.
 
 #### clone
 가장 처음 한 git 작업. 
+팀원이 생성/초대해주신 Git Organization에서 백엔드 repository를 내 로컬로 clone해왔다.
+어떻게? IntelliJ에 탑재되어 있는 저장소 복제 기능을 통해. clone하고 싶은 저장소 URL을 붙여넣기하고, '복제' 버튼을 누르면 쉽게 clone이 가능하다.
+
+#### 브랜치 생성
 
 
+#### 커밋 메세지 수정
