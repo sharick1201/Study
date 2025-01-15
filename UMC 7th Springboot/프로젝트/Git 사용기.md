@@ -72,15 +72,42 @@ git switch -c 새브런치명     # 생성과 동시에 새 브런치로 이동
 ```
 * branch
 * checkout의 -b 옵션
-	* git branch 새브랜치명 -> git checkout 새브랜치명  두 단계로 나눠서 수행해야 했던 것을 하나의 명령어로 수행할 수 있도록 해주는 옵션. 새 브랜치를 생성해준다.
+	* git branch 새브랜치명 -> git checkout 새브랜치명  두 단계로 나눠서 수행해야 했던 것을 하나의 명령어로 수행할 수 있도록 해주는 옵션. 새로운 브랜치를 생성하고 동시에 해당 브랜치로 전환(체크아웃)하는 데 사용된다.
 * switch의 -c 옵션
 	* checkout -b 명령어와 동일한 기능을 수행한다.
 	* 최신 git에서는 switch 사용이 보다 권장된다.(명령어의 명확성을 위하여)
 
 ##### merge
 병합하고자 하는 브랜치(ex. feature/#1)를 기준 브랜치(ex. develop)에 병합한다고 하자.
+1. 기준 브랜치로 이동한다.
+2. 병합한다.
+```
+git merge --no-ff feature/#1
+```
+* `--no-ff` 옵션
+	* Git에서 병합(Merge)을 수행할 때 “non-fast-forward” 병합을 강제하는 옵션이다. 이 옵션을 사용하면 병합 대상 브랜치와 현재 브랜치가 fast-forward 관계에 있더라도, 반드시 새로운 병합 커밋(Merge Commit)을 생성한다.
+	* 병합하려는 브랜치의 커밋 히스토리가 기준 브랜치의 커밋 히스토리를 포함하고 있을 때 Fast-Forward 관계가 성립한다.
+		* <span style="background:rgba(240, 107, 5, 0.2)">음... 추가 공부 필요</span>
+##### merge시 충돌 해결
+[[Git 병합 충돌]]
 
 #### 커밋
 ##### 커밋하기 + 커밋 메세지 작성
 
 ##### 커밋 메세지 수정
+
+
+#### push
+1. 현재 브랜치 확인
+2. 원격 저장소 연결 확인
+3. 로컬 브랜치를 원격 저장소에 푸시
+```
+git push -u origin feature/#2
+```
+* -u 옵션
+	* `feature/#2` 브랜치를 원격 저장소의 `feature/#2` 브랜치와 연결(tracking)한다. 이후에는 `git push`만 입력해도 푸시할 수 있다.
+
+4. 푸시 성공 메세지 확인
+```
+branch 'feature/#2' set up to track 'origin/feature/#2'.
+```
