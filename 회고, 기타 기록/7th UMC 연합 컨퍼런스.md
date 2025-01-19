@@ -153,4 +153,3 @@ https://makeus-challenge.notion.site/7th-UMC-Conference-0a57702796b743a2914e26af
 * 증설의 어려움
 
 캐시 패턴의 진화사
-1. get or set
