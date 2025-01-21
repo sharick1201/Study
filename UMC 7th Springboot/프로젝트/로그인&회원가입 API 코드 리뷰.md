@@ -101,4 +101,7 @@ docker run --name redis컨테이너이름 -p 6379:6379 -d redis
 #### 1. 시작하기: 실행시켜보기
 application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플리케이션을 실행시켰다.
 * [[Web server failed to start. Port 8080 was already in use.]] 에러 발생했는데 코드 문제는 아니라 터미널로 해결했다. (잊을만하면 발생하는 아이...)
-실행 과정에서 에러가 나지는 않았다.
+실행 과정에서 에러가 나지는 않았다. 1월 18일, 카톡으로 지우님이 말씀주신 걸 인용하여 application-local.yml 파일만 gitignore에 추가해달라고 요청드렸다. (로컬 DB 비밀번호 노출 문제 & 개인 로컬 환경이 다 달라서 충돌이 일어난다는 문제)
+
+#### 2. Spring Security 설정
+* 내용 참고: [[10주차) 로그인 및 회원 가입]]
