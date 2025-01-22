@@ -105,3 +105,10 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 
 #### 2. Spring Security 설정
 * 내용 참고: [[10주차) 로그인 및 회원 가입]]
+* 경로: `duckmelang/domain/auth/security/config/SecurityConfig.java`
+##### 상황
+* CSRF 보안, 폼 로그인, HTTP 기본 인증을 비활성화하고, 세션 관리를 STATELESS로 설정
+* `JwtAuthorizationFilter`를 `UsernamePasswordAuthenticationFilter` 앞에 추가하여 JWT 기반 인증을 수행
+* 예외 처리를 위해 `CustomAuthenticationEntryPoint` 설정
+
+##### 개선점
