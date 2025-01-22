@@ -112,6 +112,11 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `JwtAuthorizationFilter`를 `UsernamePasswordAuthenticationFilter` 앞에 추가하여 JWT 기반 인증을 수행
 	* 예외 처리를 위해 `CustomAuthenticationEntryPoint` 설정
 * AuthenticationManager
-	* 
+	* `AuthenticationConfiguration`을 사용하여 `AuthenticationManager` 생성
+* PasswordEncoder
+* DaoAuthenticationProvider
+	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
+	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
+
 
 ##### 개선점
