@@ -115,6 +115,12 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `AuthenticationConfiguration`을 사용하여 `AuthenticationManager` 생성
 * PasswordEncoder
 * DaoAuthenticationProvider
+	* 이게 뭐지?
+		* Spring Security에서 제공하는 인증 제공자 중 하나
+		* 사용자 정보를 데이터 엑세스 객체(DAO)에서 조회하여 인증을 수행한다.
+		* 사용자 조회, 비밀번호 검증, 인증 객체 생성 기능
+		* 이 클래스를 사용하기 위해서는, UserDetailsService 구현체와 PasswordEncoder 설정이 필요하다
+	* `daoAuthenticationProvider` 메서드에서 `DaoAuthenticationProvider`를 Bean으로 등록
 	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
 	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
 
