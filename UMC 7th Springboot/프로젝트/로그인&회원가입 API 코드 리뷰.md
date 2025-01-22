@@ -123,6 +123,8 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `daoAuthenticationProvider` 메서드에서 `DaoAuthenticationProvider`를 Bean으로 등록
 	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
 	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
-
-
 ##### 개선점
+* DaoAuthenticationProvider
+	* 우리 계속 Repository 패턴으로 해왔늗데, 얘도 Repository 패턴으로 할 수는 없을까? 더 알아봐야 할 거 같다.
+* .formLogin(formLogin -> formLogin.disable()) 이거 왜 disable 해두었는지? 나머지 로직들을 지켜봐야겠다.
+* 마지막엔 csrf 활성화할거냐고 물어보기
