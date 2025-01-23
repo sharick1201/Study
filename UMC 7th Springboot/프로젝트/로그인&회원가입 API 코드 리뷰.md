@@ -128,3 +128,11 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* 우리 계속 Repository 패턴으로 해왔늗데, 얘도 Repository 패턴으로 할 수는 없을까? 더 알아봐야 할 거 같다.
 * .formLogin(formLogin -> formLogin.disable()) 이거 왜 disable 해두었는지? 나머지 로직들을 지켜봐야겠다.
 * 마지막엔 csrf 활성화할거냐고 물어보기
+
+#### 3. JWT 설정
+
+
+
+
+
+* 로그인 횟수 시도 제한 설정?(워크북 10주차 보안 강화 팁 참고)
