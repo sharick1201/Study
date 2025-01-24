@@ -86,7 +86,7 @@ Product product = Product.of("Laptop", 1500.0, 10);
 
 ---
 
-##### @AllArgsConstructor만 쓰고 있는데, @NoArgsConstructor를 추가해야 할까?
+#### @AllArgsConstructor만 쓰고 있는데, @NoArgsConstructor를 추가해야 할까?
 
 추가해야 하는 경우
 
@@ -131,3 +131,51 @@ Product product = Product.of("Laptop", 1500.0, 10);
 	* 네트워크 통신(REST API에서 JSON 직렬화/역직렬화, RPC(Remote Procedure Call))
 	* 데이터베이스 저장
 	* 메세지 큐(Kafka, RabbitMQ 등을 통해 객체를 전송할 때)
+
+
+
+https://minwoo-it-factory.tistory.com/entry/DTO에-Noargs-사용하는이유와-aceessLevel-Protected을-사용하는이유  
+> 우선, 기본 생성자가 필요한 이유를 알기 위해서는
+> 스프링이 어떻게 Dto를 JSON으로 맵핑하는지 그 원리를 알아야 한다.
+> 
+> 스프링은 바로 Jackson 라이브러리의 **ObjectMapper를 사용**하여 JSON으로 맵핑한다!
+> 
+> ObjectMapper는 직렬화(serialize), 역직렬화(deserialize)를 수행하는데,
+> 
+> 이때 **직렬화는 Java Object → JSON으로 파싱**하는 것,
+> **역직렬화는 JSON → Java Object로 파싱**하는 것을 의미한다.
+> 
+> 컨트롤러에서 DTO를 @RequestBody를 통해 가져올 때, 바인딩을 ObjectMapper가 수행한다.
+> 
+> 이렇게 ObjectMapper가 직렬화, 역직렬화를 수행하여 맵핑할 때,
+> DTO를 DTO의 기본 생성자를 이용하여 생성하게 된다.
+> 
+> 이러한 과정에서 DTO의 기본 생성자가 없다면, 맵핑 오류가 나는 것이다.
+
+
+
+### 추가 의견!
+
+https://m-ioi-m.tistory.com/entry/왜-dto에서-항상-Getter와-NoArgsConstructor를-붙여줘야-할까  
+> 그러나 기본 생성자가 없어도 이런 변환작업은 가능하다고 합니다. 
+> 
+> ObjectMapper 내부에는 property와 생성자가 위임된 경우 그 정보를 이용해서 직렬화/역직렬화에 사용하는 로직이 있습니다.
+> 
+> 위임 어노테이션에는 @JsonProperty, @JsonAutoDetect, @JsonCreator가 있습니다. 
+> 
+> 여기서 위임이라는 것은 어노테이션을 사용해 객체를 변환(직렬화/역직렬화)할 때 쓰일 정보를 직접 선언하는 것인데,
+> 
+> 이 위임을 자동으로 해주는 jackson-datatype-jdk8이라는 라이브러리가 있습니다.
+> ![](https://blog.kakaocdn.net/dn/uf6v3/btr5ZkZBf8u/VNFJQuwKIkvVrLvpmuUsB0/img.png)
+> 
+> 현재 저희의 프로젝트에도 포함되어 있습니다. 위의 3가지 모듈을 모두 지원해주고 있습니다. 
+> 
+> 여기에서 @JsonProperty 어노테이션을 통해서 jackson-module-parameter-names 모듈을 지원받을 수 있습니다. 
+> 
+> 이 모듈은 기본 생성자가 없어도 다른 생성자로 대체하여 역직렬화를 수행할 수 있다고 합니다.
+> 
+> SpringBoot에서는 jackson binding을 할 때 ObjectMapper에 이 모듈이 기본적으로 등록되어 있다고 합니다. 
+> 
+> 그래서 controller에 들어오는 request dto에 기본생성자가 없어도 역직렬화를 수행할 수 있습니다.
+
+그럼... 이 경우엔 안 써도 되는건가??

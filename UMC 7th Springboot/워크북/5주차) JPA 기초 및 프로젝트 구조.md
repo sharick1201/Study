@@ -206,7 +206,7 @@ public class Order {
 * [[Lombok]]
 * [[Builder 패턴]]
 * [[@Builder]]
-* [[@NoArgsConstructor & @AllArgsConstructor]]
+* [[@NoArgsConstructor & @AllArgsConstructor & 직렬화와 역직렬화]]
 * [[생성자]]
 * [[Hibernate]]
 * [[DTO & VO]]

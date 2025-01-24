@@ -1,4 +1,4 @@
-
+<p align="right">2025-01-21</p>
 ### 상황
 feature/#9 PR 리뷰를 위해 gradle을 다시 build하고 Application을 실행시켰는데, 어플리케이션 실행에 실패했다.
 ```
