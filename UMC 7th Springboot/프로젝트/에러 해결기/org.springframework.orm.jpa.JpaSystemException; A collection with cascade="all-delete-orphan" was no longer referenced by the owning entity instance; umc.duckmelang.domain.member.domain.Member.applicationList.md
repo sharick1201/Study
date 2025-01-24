@@ -50,6 +50,8 @@ public static Member toUpdatedMember(Member member, String nickname, String intr
 
 > 따라서 문제를 해결하기 위해서는, **JPA가 해당 로직을 수정으로 인식하도록** 만들어야 한다.
 
+
+### 해결
 JPA가 수정으로 인식하도록 만드는 방법은 다음과 같다.
 - 엔티티에 상태 변경 메서드 추가
 	- 엔티티 내부에 update메서드를 추가하고, 서비스 계층에서 이룰 호출하여 상태 변경
@@ -67,7 +69,6 @@ void updateProfile(@Param("id") Long id,
 	@Param("nickname") String nickname, 
 	@Param("introduction") String introduction);
 ```
-
 
 엔티티에 Setter 사용을 지양하고(일관성 문제), 가장 객체지향적이면서 JPA의 변경 감지 기능을 효과적으로 활용할 수 있는 방법은 **엔티티에 상태 변경 메서드 추가** 방식이다.
 * 왜 이게 가장 좋은 방식이지? 근거는?
@@ -89,6 +90,48 @@ void updateProfile(@Param("id") Long id,
 			3. 트랜잭션이 종료되면, 변경된 필드에 자동으로 `UPDATE` 쿼리를 실행한다.
 		* `updateProfile`과 같은 메서드를 엔티티 내부에 정의하면, `updateProfile` 메서드는 기존 엔티티의 필드를 직접 변경하므로, JPA가 변경 사항을 자연스럽게 감지한다.
 		* 별도의 `save` 메서드를 호출하지 않아도, JPA가 영속성 컨텍스트에서 상태 변경을 추적하고 자동으로 데이터베이스에 반영한다.
+	* 유지보수성, 테스트 용이성
+		* 상태 변경과 관련된 로직을 수정해야 할 때 엔티티 내부만 수정하면 된다.
+		* 서비스 계층에서 로직이 분산되지 않아, 서비스 계층의 코드가 단순해지고 가독성이 높아진다.
+		* 간단한 단위테스트로 로직을 쉽게 검증할 수 있다.
+	* JPQL과 `@Modifying`을 사용하여 직접 업데이트하는 방식은, 엔티티의 상태가 영속성 컨텍스트와 불일치할 수 있다는 위험이 있고, 상태 변경 로직이 엔티티 외부에 존재하므로 로직이 분산되고 객체지향적 설계 원칙에 어긋난다. 또 데이터베이스에 직접 접근하므로 테스트와 유지보수가 어렵다.
+
+> 그럼 이제 엔티티에 상태 변경 메서드를 추가하여 문제를 해결해보자!
+
+위에 작성한 converter 관련 로직을 삭제하고 아래 코드들을 추가했다.
+```
+//Member entity 클래스
+
+// 프로필 업데이트 메서드 추가
+public void updateProfile(String nickname, String introduction) {  
+    if (nickname == null || nickname.isBlank()) {  
+        throw new MemberHandler(ErrorStatus.MEMBER_EMPTY_NICKNAME);  
+    }  
+    if (introduction == null || introduction.isBlank()) {  
+        throw new MemberHandler(ErrorStatus.MEMBER_EMPTY_INTRODUCTION);  
+    }  
+    this.nickname = nickname;  
+    this.introduction = introduction;  
+}
 
 
-### 해결
+
+//memberCommandService.updateMemberProfile 내의 상태 변경 메서드 호출을 변경하고 member를 return하는 것으로 변경
+@Override  
+@Transactional  
+public Member updateMemberProfile(Long memberId, MemberRequestDto.UpdateMemberProfileDto request) {  
+  
+    // 회원 조회 및 유효성 검증  
+    Member member = memberRepository.findById(memberId)  
+            .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));  
+  
+    // 상태 변경 메서드 호출  
+    member.updateProfile(request.getNickname(), request.getIntroduction());  
+  
+    return member;  
+}
+```
+
+
+결과는... 성공!
+![[스크린샷 2025-01-24 오후 4.59.54.png]]
