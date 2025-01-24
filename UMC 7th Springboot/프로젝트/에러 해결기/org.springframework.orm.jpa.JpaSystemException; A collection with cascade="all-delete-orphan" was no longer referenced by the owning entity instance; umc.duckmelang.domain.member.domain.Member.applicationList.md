@@ -21,4 +21,19 @@ org.springframework.orm.jpa.JpaSystemException: A collection with cascade="all-d
 좀 더 구체적으로, 컬렉션을 직접 교체하거나, 관계를 제대로 설정하지 않을 때 발생한다.
 
 현재 에러는 memberCommandService.updateMemberProfile에서 발생하고 있다.
+나는 회원의 
+```
+// memberConverter
+public static Member toUpdatedMember(Member member, String nickname, String introduction) {  
+    return Member.builder()  
+            .id(member.getId())  
+            .nickname(nickname)  
+            .introduction(introduction)  
+            .build();  
+}
+```
+
+
+
+
 ### 해결
