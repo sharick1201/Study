@@ -127,7 +127,9 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * DaoAuthenticationProvider
 	* 우리 계속 Repository 패턴으로 해왔늗데, 얘도 Repository 패턴으로 할 수는 없을까? 더 알아봐야 할 거 같다.
 * .formLogin(formLogin -> formLogin.disable()) 이거 왜 disable 해두었는지? 나머지 로직들을 지켜봐야겠다.
-* 마지막엔 csrf 활성화할거냐고 물어보기
+* csrf 활성화? -> 필요 없을듯
+	* https://velog.io/@wonizizi99/SpringSpring-security-CSRF란-disable
+	*  rest api를 이용한 서버라면, session 기반 인증과는 다르게 stateless하기 때문에 서버에 인증정보를 보관하지 않는다. rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다. 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
 
 #### 3. JWT 설정
 
