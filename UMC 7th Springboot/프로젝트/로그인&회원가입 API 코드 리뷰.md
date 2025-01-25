@@ -98,6 +98,9 @@ docker run --name redis컨테이너이름 -p 6379:6379 -d redis
 
 
 
+
+스프링 시큐리티에 대한 지식이 부족한 것 같아서 개발자 유미의 유튜브 강의(Spring Security JWT)를 보면서 공부하고, 해당 API 코드 리뷰 진행하였다. 
+
 #### 1. 시작하기: 실행시켜보기
 application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플리케이션을 실행시켰다.
 * [[Web server failed to start. Port 8080 was already in use.]] 에러 발생했는데 코드 문제는 아니라 터미널로 해결했다. (잊을만하면 발생하는 아이...)
@@ -124,9 +127,10 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
 	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
 ##### 개선점
+JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 같다. <span style="background:#affad1">DaoAuthenticationProvider 부분은 아직 잘 파악이 안 되니 나중에 다시 확인해보자.</span>
 * DaoAuthenticationProvider
 	* 우리 계속 Repository 패턴으로 해왔늗데, 얘도 Repository 패턴으로 할 수는 없을까? 더 알아봐야 할 거 같다.
-* .formLogin(formLogin -> formLogin.disable()) 이거 왜 disable 해두었는지? 나머지 로직들을 지켜봐야겠다.
+
 * csrf 활성화? -> 필요 없을듯
 	* https://velog.io/@wonizizi99/SpringSpring-security-CSRF란-disable
 	*  rest api를 이용한 서버라면, session 기반 인증과는 다르게 stateless하기 때문에 서버에 인증정보를 보관하지 않는다. rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다. 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
@@ -134,7 +138,16 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 #### 3. JWT 설정
 
 
+#### 4. 회원가입 API 구현
 
+
+
+#### 5. 로그인 API 구현
+#### 6. 토큰 재발급 API 구현
+#### 7.  로그아웃 API 구현
+- 블랙리스트 사용
+- 토큰 관련 예외 응답 코드
+- Redis 활용하여 구현
 
 
 * 로그인 횟수 시도 제한 설정?(워크북 10주차 보안 강화 팁 참고)
