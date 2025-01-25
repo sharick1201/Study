@@ -139,10 +139,15 @@ JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 �
 
 
 #### 4. 회원가입 API 구현
+* [x] 회원가입 시, 이미 가입한 이메일인 경우 예외 발생시키기
+* [x] 비밀번호 암호화 
 
-
+문제 없어보인다
 
 #### 5. 로그인 API 구현
+JWT를 이용한 프로젝트는 SecurityConfig에서 formLogin을 disable() 했으므로, 활성화되어 있던 UsernamePasswordAuthentication, AuthenticationManager 필터들이 동작하지 않는다. 따라서 필터를 커스텀해서 등록해야 한다.
+
+
 #### 6. 토큰 재발급 API 구현
 #### 7.  로그아웃 API 구현
 - 블랙리스트 사용
