@@ -173,10 +173,15 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * 로그인 성공 시 JWT 반환
 	* 현재: 컨트롤러에서 직접 반환
 	* 제안: JWT Success 핸들러 사용
-	* 비교
-		* JWT Success 핸들러 사용
-			* 
-
+		
+		* 핸들러를 사용하는 경우 다양한 로그인 방식(소셜 로그인, 기본 로그인) 결과를 한 번에 핸들링 할 수 있음
+		* 토큰 생성 및 저장이 Spring Security 인증 흐름 내에서 처리되어서 Spring Security와 보다 통합된 보안 로직을 만들 수 있음
+		* 그러나... 구현이 복잡하여 시간이 오래 걸린다! ㅠㅠ
+		
+		* 참고 자료:
+			- [https://willbfine.tistory.com/570](https://willbfine.tistory.com/570)
+			- [https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7](https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7)
+			    - 7, 8, 9, 10강 부분
 
 #### 6. 토큰 재발급 API 구현
 
