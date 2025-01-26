@@ -101,14 +101,15 @@ docker run --name redis컨테이너이름 -p 6379:6379 -d redis
 
 스프링 시큐리티에 대한 지식이 부족한 것 같아서 개발자 유미의 유튜브 강의(Spring Security JWT)를 보면서 공부하고, 해당 API 코드 리뷰 진행하였다. 
 
+
 #### 1. 시작하기: 실행시켜보기
 application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플리케이션을 실행시켰다.
 * [[Web server failed to start. Port 8080 was already in use.]] 에러 발생했는데 코드 문제는 아니라 터미널로 해결했다. (잊을만하면 발생하는 아이...)
 실행 과정에서 에러가 나지는 않았다. 1월 18일, 카톡으로 지우님이 말씀주신 걸 인용하여 application-local.yml 파일만 gitignore에 추가해달라고 요청드렸다. (로컬 DB 비밀번호 노출 문제 & 개인 로컬 환경이 다 달라서 충돌이 일어난다는 문제)
 
+
 #### 2. Spring Security 설정
 * 내용 참고: [[10주차) 로그인 및 회원 가입]]
-* 경로: `duckmelang/domain/auth/security/config/SecurityConfig.java`
 ##### 상황
 * SecurityFilterChain
 	* CSRF 보안, 폼 로그인, HTTP 기본 인증을 비활성화하고, 세션 관리를 STATELESS로 설정
@@ -126,8 +127,9 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `daoAuthenticationProvider` 메서드에서 `DaoAuthenticationProvider`를 Bean으로 등록
 	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
 	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
-##### 개선점
-JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 같다. <span style="background:#affad1">DaoAuthenticationProvider 부분은 아직 잘 파악이 안 되니 나중에 다시 확인해보자.</span>
+##### 리뷰 포인트
+- [x] JWT 사용에 따라 변경될만한 부분들이 잘 반영되어 있는가?
+큰 문제 없는 것 같다. <span style="background:#affad1">DaoAuthenticationProvider 부분은 아직 잘 파악이 안 되니 나중에 다시 확인해보자.</span>
 * DaoAuthenticationProvider
 	* 우리 계속 Repository 패턴으로 해왔늗데, 얘도 Repository 패턴으로 할 수는 없을까? 더 알아봐야 할 거 같다.
 
@@ -135,22 +137,40 @@ JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 �
 	* https://velog.io/@wonizizi99/SpringSpring-security-CSRF란-disable
 	*  rest api를 이용한 서버라면, session 기반 인증과는 다르게 stateless하기 때문에 서버에 인증정보를 보관하지 않는다. rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다. 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
 
-#### 3. JWT 설정
+
+#### 3. JWT 설정 / 관련 흐름 / 블랙리스트 사용
+
+##### 상황
+- JWT 생성 및 검증
+    - `JwtTokenProvider`를 통해 AccessToken과 RefreshToken 생성
+    - `JwtUtil`에서 토큰의 유효성 확인 및 만료 여부 체크
+    - 유효하지 않은 토큰은 `TokenException`을 통해 예외 처리
+- 블랙리스트 관리
+    - `BlacklistService`를 통해 Redis에 저장된 블랙리스트를 관리
+    - `JwtAuthorizationFilter`에서 요청 시 토큰이 블랙리스트에 포함되어 있는지 확인
+
+##### 리뷰 포인트
+
 
 
 #### 4. 회원가입 API 구현
+##### 리뷰 포인트
 * [x] 회원가입 시, 이미 가입한 이메일인 경우 예외 발생시키기
 * [x] 비밀번호 암호화 
 
 문제 없어보인다
 
+
 #### 5. 로그인 API 구현
+##### 상황
+* 사용자의 이메일과 비밀번호를 확인한 뒤, AccessToken과 RefreshToken 발급
+* `AuthService.login()` 메서드에서 인증 후 토큰 생성 및 저장
+* `JwtAuthorizationFilter`: 요청 헤더에서 토큰을 추출하고 검증한 후, 인증 정보를 SecurityContext에 저장. 유효하지 않은 토큰일 경우 예외 발생 및 응답 반환
+##### 리뷰 포인트
 * JWT를 이용한 프로젝트는 SecurityConfig에서 formLogin을 disable() 했으므로, 활성화되어 있던 UsernamePasswordAuthentication, AuthenticationManager 필터들이 동작하지 않는다. 따라서 필터를 커스텀해서 등록해야 한다.
 	* 근데! `JwtAuthorizationFilter`가 이미 JWT 기반 인증을 처리하고 있기 때문에 필요 없음
+	* 
 
-##### 상황
-* 유효한 RefreshToke을 통해 새로운 AccessToken과 RefreshToken 재발급
-* 기존 Refresh 토큰 삭제하고 새로 저장
 
 #### 6. 토큰 재발급 API 구현
 
@@ -161,9 +181,35 @@ JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 �
 
 
 #### 7.  로그아웃 API 구현
-- 블랙리스트 사용
-- 토큰 관련 예외 응답 코드
-- Redis 활용하여 구현
+##### 상황
+
+
+
+#### 8. 토큰 관련 예외 응답 코드
+##### 상황
+- `CustomAuthenticationEntryPoint`와 `ExceptionAdvice`를 통해 인증 및 토큰 관련 예외를 처리
+- 커스텀 예외(`TokenException`)를 사용해 명확한 에러 메시지와 상태 코드 반환
+
+
+#### 9. Redis 활용하여 구현
+##### 상황
+* 설정: `RedisConfig`에서 RedisTemplate을 설정하여 Redis 연동
+- RefreshToken은 Redis에 저장되며, 만료 시간은 7일로 설정
+- `RefreshTokenServiceImpl`에서 RefreshToken의 저장, 조회, 삭제를 담당
+- RefreshToken이 만료되었거나 유효하지 않으면 예외 발생
+
+
+#### 10. 기타
+##### 상황
+* Swagger
+	* JWT 인증을 위한 SecuritySchme 설정 포함
+* CustomUserDetails
+	* `UserDetails` 인터페이스 구현체를 통해 사용자 정보를 Spring Security와 통합
+* `ApiResponse`를 통하여 API 답 통일화
+
+
+
+
 
 
 ---
