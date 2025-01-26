@@ -169,7 +169,13 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 ##### 리뷰 포인트
 * JWT를 이용한 프로젝트는 SecurityConfig에서 formLogin을 disable() 했으므로, 활성화되어 있던 UsernamePasswordAuthentication, AuthenticationManager 필터들이 동작하지 않는다. 따라서 필터를 커스텀해서 등록해야 한다.
 	* 근데! `JwtAuthorizationFilter`가 이미 JWT 기반 인증을 처리하고 있기 때문에 필요 없음
-	* 
+
+* 로그인 성공 시 JWT 반환
+	* 현재: 컨트롤러에서 직접 반환
+	* 제안: JWT Success 핸들러 사용
+	* 비교
+		* JWT Success 핸들러 사용
+			* 
 
 
 #### 6. 토큰 재발급 API 구현
@@ -198,7 +204,11 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 - `RefreshTokenServiceImpl`에서 RefreshToken의 저장, 조회, 삭제를 담당
 - RefreshToken이 만료되었거나 유효하지 않으면 예외 발생
 
-
+##### 리뷰 포인트
+* Redis를 사용하면 좋은가?
+	* 빠른 엑세스 속도 보장
+	* 세션을 사용하면 메모리에 부하가 걸리게 되는데, Redis는 이를 해결
+	* Redis는 데이터의 유효 기간을 지정할 수 있기 때문에 주기적으로 만료된 토큰을 제거하는 작업이 필요없음
 #### 10. 기타
 ##### 상황
 * Swagger
