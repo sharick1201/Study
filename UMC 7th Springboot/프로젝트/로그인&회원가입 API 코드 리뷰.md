@@ -183,6 +183,15 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 			- [https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7](https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7)
 			    - 7, 8, 9, 10강 부분
 
+* CORS 설정 추가?
+	* 프론트엔드단에서 데이터를 볼 수 있도록 CORS 설정을 추가?
+	* 
+	* 참고자료: 
+		- https://velog.io/@shawnhansh/SpringBoot-CORS-적용하기
+		- https://velog.io/@yevini118/SpringBoot-CORS-설정하기
+		- https://inpa.tistory.com/entry/WEB-📚-CORS-💯-정리-해결-방법-👏
+
+
 #### 6. 토큰 재발급 API 구현
 
 ##### 상황
