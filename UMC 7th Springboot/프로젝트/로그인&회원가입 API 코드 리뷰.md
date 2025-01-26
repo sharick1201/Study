@@ -102,10 +102,14 @@ docker run --name redis컨테이너이름 -p 6379:6379 -d redis
 스프링 시큐리티에 대한 지식이 부족한 것 같아서 개발자 유미의 유튜브 강의(Spring Security JWT)를 보면서 공부하고, 해당 API 코드 리뷰 진행하였다. 
 
 
+
+
 #### 1. 시작하기: 실행시켜보기
 application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플리케이션을 실행시켰다.
 * [[Web server failed to start. Port 8080 was already in use.]] 에러 발생했는데 코드 문제는 아니라 터미널로 해결했다. (잊을만하면 발생하는 아이...)
 실행 과정에서 에러가 나지는 않았다. 1월 18일, 카톡으로 지우님이 말씀주신 걸 인용하여 application-local.yml 파일만 gitignore에 추가해달라고 요청드렸다. (로컬 DB 비밀번호 노출 문제 & 개인 로컬 환경이 다 달라서 충돌이 일어난다는 문제)
+
+
 
 
 #### 2. Spring Security 설정
@@ -127,6 +131,7 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `daoAuthenticationProvider` 메서드에서 `DaoAuthenticationProvider`를 Bean으로 등록
 	* `CustomUserDetailsService`를 사용자 정보 조회 서비스로 설정하고, `passwordEncoder`를 사용하도록 설정
 	* `hideUserNotFoundExceptions` 옵션을 false로 설정하여 `UsernameNotFoundException`을 노출
+
 ##### 리뷰 포인트
 - [x] JWT 사용에 따라 변경될만한 부분들이 잘 반영되어 있는가?
 큰 문제 없는 것 같다. <span style="background:#affad1">DaoAuthenticationProvider 부분은 아직 잘 파악이 안 되니 나중에 다시 확인해보자.</span>
@@ -136,6 +141,15 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * csrf 활성화? -> 필요 없을듯
 	* https://velog.io/@wonizizi99/SpringSpring-security-CSRF란-disable
 	*  rest api를 이용한 서버라면, session 기반 인증과는 다르게 stateless하기 때문에 서버에 인증정보를 보관하지 않는다. rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다. 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
+
+* CORS 설정 추가?
+	* 프론트엔드단에서 데이터를 볼 수 있도록 CORS 설정을 추가
+	
+	* 참고자료: 
+		- https://velog.io/@shawnhansh/SpringBoot-CORS-적용하기
+		- https://velog.io/@yevini118/SpringBoot-CORS-설정하기
+		- https://inpa.tistory.com/entry/WEB-📚-CORS-💯-정리-해결-방법-👏
+
 
 
 #### 3. JWT 설정 / 관련 흐름 / 블랙리스트 사용
@@ -153,7 +167,10 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 
 
 
+
 #### 4. 회원가입 API 구현
+##### 상황
+
 ##### 리뷰 포인트
 * [x] 회원가입 시, 이미 가입한 이메일인 경우 예외 발생시키기
 * [x] 비밀번호 암호화 
@@ -161,11 +178,14 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 문제 없어보인다
 
 
+
+
 #### 5. 로그인 API 구현
 ##### 상황
 * 사용자의 이메일과 비밀번호를 확인한 뒤, AccessToken과 RefreshToken 발급
 * `AuthService.login()` 메서드에서 인증 후 토큰 생성 및 저장
 * `JwtAuthorizationFilter`: 요청 헤더에서 토큰을 추출하고 검증한 후, 인증 정보를 SecurityContext에 저장. 유효하지 않은 토큰일 경우 예외 발생 및 응답 반환
+
 ##### 리뷰 포인트
 * JWT를 이용한 프로젝트는 SecurityConfig에서 formLogin을 disable() 했으므로, 활성화되어 있던 UsernamePasswordAuthentication, AuthenticationManager 필터들이 동작하지 않는다. 따라서 필터를 커스텀해서 등록해야 한다.
 	* 근데! `JwtAuthorizationFilter`가 이미 JWT 기반 인증을 처리하고 있기 때문에 필요 없음
@@ -183,14 +203,6 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 			- [https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7](https://www.youtube.com/watch?v=3Ff7UHGG3t8&list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ&index=7)
 			    - 7, 8, 9, 10강 부분
 
-* CORS 설정 추가?
-	* 프론트엔드단에서 데이터를 볼 수 있도록 CORS 설정을 추가
-	
-	* 참고자료: 
-		- https://velog.io/@shawnhansh/SpringBoot-CORS-적용하기
-		- https://velog.io/@yevini118/SpringBoot-CORS-설정하기
-		- https://inpa.tistory.com/entry/WEB-📚-CORS-💯-정리-해결-방법-👏
-
 * DTO 이메일 입력 받을 때 이메일 형식인지 확인하기
 	* @Email보다는 정규식으로 작성
 		* @Email: 실제로 유효한 이메일 양식이 아닌데도 유효성 검증을 통과시켜버리는 케이스가 있다.
@@ -201,6 +213,11 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 		- [https://devje.tistory.com/287](https://devje.tistory.com/287)
 
 
+* AuthService는 인터페이스 + 구현체 조합으로 만들지 않아도 될까?
+	* 토큰 재발급이 있어서 좀 그런가?
+
+
+
 #### 6. 토큰 재발급 API 구현
 
 ##### 상황
@@ -208,20 +225,15 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * 기존 Refresh 토큰 삭제하고 새로 저장
 
 ##### 리뷰 포인트
-* `JwtTokenProvider`중복 코드 제거
-	* `JwtTokenProvider`에서 Access Token과 Refresh Token을 생성하는 로직이 거의 동일하므로, 공통 메서드로 추출하여 중복을 제거
 
-#### **개선 방안**
 
-- 공통 메서드로 리팩토링.
-
-복사
-
-`public String generateToken(Long memberId, long expiration) {     return Jwts.builder()             .setSubject(String.valueOf(memberId))             .setIssuedAt(new Date())             .setExpiration(new Date(System.currentTimeMillis() + expiration))             .signWith(key, SignatureAlgorithm.HS256)             .compact(); }  public String generateAccessToken(Long memberId) {     return generateToken(memberId, accessTokenExpiration); }  public String generateRefreshToken(Long memberId) {     return generateToken(memberId, refreshTokenExpiration); }`
 
 
 #### 7.  로그아웃 API 구현
 ##### 상황
+
+##### 리뷰 포인트
+
 
 
 
@@ -229,6 +241,10 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 ##### 상황
 - `CustomAuthenticationEntryPoint`와 `ExceptionAdvice`를 통해 인증 및 토큰 관련 예외를 처리
 - 커스텀 예외(`TokenException`)를 사용해 명확한 에러 메시지와 상태 코드 반환
+
+##### 리뷰 포인트
+
+
 
 
 #### 9. Redis 활용하여 구현
@@ -245,10 +261,6 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* 세션을 사용하면 메모리에 부하가 걸리게 되는데, Redis는 이를 해결
 	* Redis는 데이터의 유효 기간을 지정할 수 있기 때문에 주기적으로 만료된 토큰을 제거하는 작업이 필요없음
 
-* Redis 설정 최적화
-	* Value에 객체를 저장할 경우, JSON 직렬화를 사용하는 것이 더 적합
-	* `redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer()); // JSON 직렬화`
-
 
 #### 10. 기타
 ##### 상황
@@ -259,8 +271,7 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * `ApiResponse`를 통하여 API 답 통일화
 
 ##### 리뷰 포인트
-* Swagger 서버 URL 동적 설정
-	* 현재는 URL이
+
 
 
 
@@ -270,8 +281,3 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 
 * 로그인 횟수 시도 제한 설정?(워크북 10주차 보안 강화 팁 참고)
 * 에러 핸들링 변경사항 이미 반영하심!
-
-
-
-
-* AuthService는 인터페이스 + 구현체 조합으로 만들지 않아도 될까?
