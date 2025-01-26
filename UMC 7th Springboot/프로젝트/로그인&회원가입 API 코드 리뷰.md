@@ -148,13 +148,25 @@ JWT 사용에 따라 잘 설정한 것처럼 보인다. 큰 문제 없는 것 �
 * JWT를 이용한 프로젝트는 SecurityConfig에서 formLogin을 disable() 했으므로, 활성화되어 있던 UsernamePasswordAuthentication, AuthenticationManager 필터들이 동작하지 않는다. 따라서 필터를 커스텀해서 등록해야 한다.
 	* 근데! `JwtAuthorizationFilter`가 이미 JWT 기반 인증을 처리하고 있기 때문에 필요 없음
 
+##### 상황
+* 유효한 RefreshToke을 통해 새로운 AccessToken과 RefreshToken 재발급
+* 기존 Refresh 토큰 삭제하고 새로 저장
 
 #### 6. 토큰 재발급 API 구현
+
+##### 상황
+* 유효한 RefreshToke을 통해 새로운 AccessToken과 RefreshToken 재발급
+* 기존 Refresh 토큰 삭제하고 새로 저장
+
+
+
 #### 7.  로그아웃 API 구현
 - 블랙리스트 사용
 - 토큰 관련 예외 응답 코드
 - Redis 활용하여 구현
 
+
+---
 
 * 로그인 횟수 시도 제한 설정?(워크북 10주차 보안 강화 팁 참고)
 * 에러 핸들링 변경사항 이미 반영하심!
