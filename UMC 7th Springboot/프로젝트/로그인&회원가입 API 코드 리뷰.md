@@ -212,7 +212,6 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 		- [https://bellog.tistory.com/134](https://bellog.tistory.com/134)
 		- [https://devje.tistory.com/287](https://devje.tistory.com/287)
 
-
 * AuthService는 인터페이스 + 구현체 조합으로 만들지 않아도 될까?
 	* 토큰 재발급이 있어서 좀 그런가?
 
