@@ -184,12 +184,21 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 			    - 7, 8, 9, 10강 부분
 
 * CORS 설정 추가?
-	* 프론트엔드단에서 데이터를 볼 수 있도록 CORS 설정을 추가?
-	* 
+	* 프론트엔드단에서 데이터를 볼 수 있도록 CORS 설정을 추가
+	
 	* 참고자료: 
 		- https://velog.io/@shawnhansh/SpringBoot-CORS-적용하기
 		- https://velog.io/@yevini118/SpringBoot-CORS-설정하기
 		- https://inpa.tistory.com/entry/WEB-📚-CORS-💯-정리-해결-방법-👏
+
+* DTO 이메일 입력 받을 때 이메일 형식인지 확인하기
+	* @Email보다는 정규식으로 작성
+		* @Email: 실제로 유효한 이메일 양식이 아닌데도 유효성 검증을 통과시켜버리는 케이스가 있다.
+		
+	* 참고자료:
+		*  [https://velog.io/@goat_hoon/Lombok-Email-어노테이션의-약점-부제-테스트코드-짱짱맨](https://velog.io/@goat_hoon/Lombok-Email-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98%EC%9D%98-%EC%95%BD%EC%A0%90-%EB%B6%80%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%93%9C-%EC%A7%B1%EC%A7%B1%EB%A7%A8)
+		- [https://bellog.tistory.com/134](https://bellog.tistory.com/134)
+		- [https://devje.tistory.com/287](https://devje.tistory.com/287)
 
 
 #### 6. 토큰 재발급 API 구현
@@ -198,6 +207,17 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 * 유효한 RefreshToke을 통해 새로운 AccessToken과 RefreshToken 재발급
 * 기존 Refresh 토큰 삭제하고 새로 저장
 
+##### 리뷰 포인트
+* `JwtTokenProvider`중복 코드 제거
+	* `JwtTokenProvider`에서 Access Token과 Refresh Token을 생성하는 로직이 거의 동일하므로, 공통 메서드로 추출하여 중복을 제거
+
+#### **개선 방안**
+
+- 공통 메서드로 리팩토링.
+
+복사
+
+`public String generateToken(Long memberId, long expiration) {     return Jwts.builder()             .setSubject(String.valueOf(memberId))             .setIssuedAt(new Date())             .setExpiration(new Date(System.currentTimeMillis() + expiration))             .signWith(key, SignatureAlgorithm.HS256)             .compact(); }  public String generateAccessToken(Long memberId) {     return generateToken(memberId, accessTokenExpiration); }  public String generateRefreshToken(Long memberId) {     return generateToken(memberId, refreshTokenExpiration); }`
 
 
 #### 7.  로그아웃 API 구현
@@ -217,12 +237,19 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 - RefreshToken은 Redis에 저장되며, 만료 시간은 7일로 설정
 - `RefreshTokenServiceImpl`에서 RefreshToken의 저장, 조회, 삭제를 담당
 - RefreshToken이 만료되었거나 유효하지 않으면 예외 발생
+- Key와 Value의 Serializer로 `StringRedisSerializer`를 사용
 
 ##### 리뷰 포인트
 * Redis를 사용하면 좋은가?
 	* 빠른 엑세스 속도 보장
 	* 세션을 사용하면 메모리에 부하가 걸리게 되는데, Redis는 이를 해결
 	* Redis는 데이터의 유효 기간을 지정할 수 있기 때문에 주기적으로 만료된 토큰을 제거하는 작업이 필요없음
+
+* Redis 설정 최적화
+	* Value에 객체를 저장할 경우, JSON 직렬화를 사용하는 것이 더 적합
+	* `redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer()); // JSON 직렬화`
+
+
 #### 10. 기타
 ##### 상황
 * Swagger
@@ -231,6 +258,9 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 	* `UserDetails` 인터페이스 구현체를 통해 사용자 정보를 Spring Security와 통합
 * `ApiResponse`를 통하여 API 답 통일화
 
+##### 리뷰 포인트
+* Swagger 서버 URL 동적 설정
+	* 현재는 URL이
 
 
 
@@ -240,3 +270,8 @@ application-local.yml 파일을 내 환경에 맞게 잠시 수정하고, 어플
 
 * 로그인 횟수 시도 제한 설정?(워크북 10주차 보안 강화 팁 참고)
 * 에러 핸들링 변경사항 이미 반영하심!
+
+
+
+
+* AuthService는 인터페이스 + 구현체 조합으로 만들지 않아도 될까?
