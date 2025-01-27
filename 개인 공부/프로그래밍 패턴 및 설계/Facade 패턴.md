@@ -27,6 +27,28 @@
 
 
 #### 적용해보자!
+##### 기존 코드
+
+```
+    @Operation(summary = "내 프로필 조회 API", description = "마이페이지를 통해 접근할 수 있는 내 프로필을 조회해오는 API입니다. member의 id, nickname, gender, age, introduction, 대표 프로필 사진, 특정 member가 작성한 게시글 수, 특정 member의 매칭 횟수를 불러옵니다. ")
+    @GetMapping("/profile")
+    public ApiResponse<MemberResponseDto.GetMypageMemberProfileResultDto> getMypageMemberProfile (@RequestParam Long memberId) {
+
+        Member retrievedMember = memberQueryService.getMemberById(memberId)
+                .orElseThrow(()-> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+
+        MemberProfileImage latestPublicMemberProfileImage = memberProfileImageQueryService.getLatestPublicMemberProfileImage(memberId)
+                .orElseThrow(()-> new MemberProfileImageHandler(ErrorStatus.MEMBERPROFILEIMAGE_NOT_FOUND));
+
+        long postCount = postQueryService.getPostCountByMemberId(memberId);
+
+        long succeedApplicationCount = applicationQueryService.getSucceedApplicationCountByMemberId(memberId);
+
+        return ApiResponse.onSuccess(MemberConverter.toGetMemberProfileResponseDto(retrievedMember, latestPublicMemberProfileImage, postCount, succeedApplicationCount));
+    }
+
+```
+컨트롤러 코든데 비즈니스 로직이 너무 많다! Facade 로직으로 바
 
 
 
