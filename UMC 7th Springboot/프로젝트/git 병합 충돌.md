@@ -60,21 +60,32 @@ This is the combined content from both branches.
 ### 4. 충돌 해결 후 저장
 수정된 파일에서 충돌 마커(<<<<<<<, ======= , >>>>>>>)를 제거한 뒤 저장한다.
 
+
 ### 5. 수정된 파일 스테이징
 수정한 파일을 Git에 추가한다.
 ```bash
-$ git add file.txt
+git add file.txt
 ```
+
+파일이 여러 개라면 아래 명령어를 통해 추가 가능하다. 변경 사항이 있는 모든 파일들을 스테이징한다.
+```
+git add .
+```
+
 
 ### 6. 병합 커밋 생성
-충돌 해결 후 병합을 완료하려면 커밋을 생성한다. 완료되면 푸시한다.
+충돌 해결 후 병합을 완료하려면 커밋을 생성한다. 완료되면 푸시한다. 푸시하면 끝~
 ```bash
-$ git commit -m "Resolve merge conflicts in file.txt"
+git commit -m "Resolve merge conflicts in file.txt"
+git push
 ```
 
-### 7. 병합 중단(옵션)
+
+---
+
+### 옵션. 병합 중단
 만약 병합을 중단하고 이전 상태로 되돌리고 싶다면 아래 명령어를 사용한다.
 ```bash
 $ git merge --abort
 ```
-이 명령은 병합 시작 전 상태로 리셋한다.
+이를 통해 병합 시작 전 상태로 리셋한다.
