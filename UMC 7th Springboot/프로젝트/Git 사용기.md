@@ -43,6 +43,8 @@ main, develop 브랜치 모두 <u>2명</u>의 PR 승인을 요한다.
 팀원이 생성/초대해주신 Git Organization에서 백엔드 repository를 내 로컬로 clone해왔다.
 어떻게? IntelliJ에 탑재되어 있는 저장소 복제 기능을 통해. clone하고 싶은 저장소 URL을 붙여넣기하고, '복제' 버튼을 누르면 쉽게 clone이 가능하다.
 
+
+
 #### 브랜치
 ##### 현재 존재하는 브랜치 확인
 ```
@@ -79,7 +81,7 @@ git switch -c 새브런치명     # 생성과 동시에 새 브런치로 이동
 
 ##### merge
 병합하고자 하는 브랜치(ex. feature/#1)를 기준 브랜치(ex. develop)에 병합한다고 하자.
-1. 기준 브랜치로 이동한다. (최신 상태인지 확인할 것!)
+1. 기준 브랜치로 이동한다. (기준 브랜치가 최신 상태인지 확인할 것! pull을 하고 시작하자)
 2. 병합한다.
 ```
 git merge --no-ff feature/#1
@@ -174,3 +176,17 @@ git push -u origin feature/#2
 ```
 branch 'feature/#2' set up to track 'origin/feature/#2'.
 ```
+
+#### pull
+원격 저장소에서 파일을 내려받을 수 있다.
+원격 저장소와 로컬 저장소의 상태가 동일해지기 위해서 사용한다.
+```
+git pull origin <브랜치명>
+```
+
+
+
+
+---
+참고자료:
+* https://inpa.tistory.com/entry/GIT-⚡%EF%B8%8F-깃헙-원격-저장소-관리-git-remote
