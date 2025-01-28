@@ -21,7 +21,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not execu
 
 ### 원인
 
-자기소개 업데이트 과정에 문제가 생기는 것 같다. 기존에 저장되어 있던 값들이 유지가 안 되어서 birth나 password의 notNull 체크에 걸렸을 것이라 예상된다.
+자기소개 업데이트 과정에 문제가 생기는 것 같다. Member 객체의 업데이트 과정에서 기존에 저장되어 있던 필드 값들이 유지가 안 되어서 birth나 password의 notNull 체크에 걸렸을 것이라 예상된다.
 
 관련 로직을 살펴보자. MemberCommandServiceImpl에서 발생했으니 우선 해당 클래스부터.
 ```
@@ -54,47 +54,25 @@ public static Member toMemberWithIntroduction(Member member, String introduction
 }
 ```
 
-Member의 도메인 클래스를 보면, 기존 객체의 필드를 직접 수정하는 방식으로 동작하고 있다.
+Member의 도메인 클래스를 보면, 엥? 새 객체를 지가 만들고 있다...
 ```
-// 프로필 업데이트 메서드  
-public void updateProfile(String nickname, String introduction) {  
-    if (nickname == null || nickname.isBlank()) {  
-        throw new MemberException(ErrorStatus.MEMBER_EMPTY_NICKNAME);  
-    }  
-    if (introduction == null || introduction.isBlank()) {  
-        throw new MemberException(ErrorStatus.MEMBER_EMPTY_INTRODUCTION);  
-    }  
-    this.nickname = nickname;  
+public Member withIntroduction(String introduction) {  
+    Member newMember = new Member(this);  
     this.introduction = introduction;  
+    return newMember;  
 }
 ```
 
 
 ### 해결
-
-JPA의 Dirty Cheking을 통해 변경 사항을 저장하도록, repository.save()를 이용하지 않았다. return 값을 아래와 같이 수정하였다.
+기존 객체의 필드를 직접 수정하는 방식으로 개선했다.
 ```
-// MemberCommandServiceImpl
+// Member
 
-@Override  
-@Transactional  
-public Member createIntroduction(Long memberId, MemberRequestDto.CreateIntroductionDto request) {  
-    // 회원 조회 및 유효성 검증  
-    Member member = memberRepository.findById(memberId)  
-            .orElseThrow(() -> new MemberException(ErrorStatus.MEMBER_NOT_FOUND));  
-  
-    // 자기소개 문구 유효성검증  
-    if (request.getIntroduction().trim().isEmpty()) {  
-        throw new MemberException(ErrorStatus.MEMBER_EMPTY_INTRODUCTION);  
-    }  
-  
-    // 자기소개 업데이트  
-    Member updatedMember = MemberConverter.toMemberWithIntroduction(member, request.getIntroduction());  
-
-
+public void withIntroduction(String introduction) {  
+    this.introduction = introduction;  
 }
 ```
 
 ### 결과
 성공!
-![[스크린샷 2025-01-28 오전 11.32.00.png]]
