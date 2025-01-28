@@ -82,6 +82,10 @@ git switch -c 새브런치명     # 생성과 동시에 새 브런치로 이동
 ##### merge
 병합하고자 하는 브랜치(ex. feature/#1)를 기준 브랜치(ex. develop)에 병합한다고 하자.
 1. 기준 브랜치로 이동한다. (기준 브랜치가 최신 상태인지 확인할 것! pull을 하고 시작하자)
+```
+git switch develop
+```
+
 2. 병합한다.
 ```
 git merge --no-ff feature/#1
