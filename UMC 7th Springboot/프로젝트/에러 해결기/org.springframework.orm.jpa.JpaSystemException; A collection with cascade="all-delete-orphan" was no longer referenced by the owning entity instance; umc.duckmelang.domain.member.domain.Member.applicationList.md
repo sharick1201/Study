@@ -158,6 +158,6 @@ public Member updateMemberProfile(Long memberId, MemberRequestDto.UpdateMemberPr
 }
 ```
 
-
+### 결과
 결과는... 성공!
 ![[스크린샷 2025-01-24 오후 4.59.54.png]]
