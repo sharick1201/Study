@@ -90,8 +90,11 @@ public Member createIntroduction(Long memberId, MemberRequestDto.CreateIntroduct
   
     // 자기소개 업데이트  
     Member updatedMember = MemberConverter.toMemberWithIntroduction(member, request.getIntroduction());  
-  
-    return memberRepository.save(updatedMember);  
+
+
 }
 ```
+
 ### 결과
+성공!
+![[스크린샷 2025-01-28 오전 11.32.00.png]]
