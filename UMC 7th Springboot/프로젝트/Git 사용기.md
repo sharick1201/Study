@@ -191,6 +191,35 @@ git pull origin <브랜치명>
 
 
 
+
+
+#### 리베이스(Rebase)
+2. **feature/#49 브랜치로 체크아웃**:
+```
+git checkout feature/#49
+```
+    
+3. **develop 브랜치에서 최신 변경 사항 가져오기**:
+```
+git fetch origin
+```
+    
+4. **develop 브랜치 리베이스**:
+```
+git rebase origin/develop
+```
+    
+5. **충돌 해결** (필요할 경우):
+- 충돌이 발생하면, 충돌이 난 파일을 수정하고, 수정한 파일을 추가한다.
+```
+git add <conflicted-file>
+```
+    
+- 리베이스 계속:
+```
+git rebase --continue
+```
+
 ---
 참고자료:
 * https://inpa.tistory.com/entry/GIT-⚡%EF%B8%8F-깃헙-원격-저장소-관리-git-remote
