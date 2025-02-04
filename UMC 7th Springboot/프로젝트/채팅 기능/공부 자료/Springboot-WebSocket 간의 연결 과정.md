@@ -11,8 +11,10 @@
 
 #### 1. WebSocketConfig
    - 핸들러 등록 및 URL 매핑
-     - `WebSocketConfig`는 `WebSocketConfigurer` 인터페이스를 구현하여, 특정 URL로 들어오는 요청을 처리할 핸들러를 등록한다.
-     - ex. `registry.addHandler(webSocketHandler, "/ws/chat")`는 `/ws/chat` 경로로 들어오는 WebSocket 요청을 `webSocketHandler`로 처리하도록 지정한다.
+     - `WebSocketConfig`는 `WebSocketConfigurer` 인터페이스를 구현한다.
+     - WebSocket 연결을 시도할 엔드포인트를 정의한다.
+     - 특정 URL로 들어오는 요청을 처리할 핸들러를 등록한다.
+
    - CORS 설정
      - WebSocket은 CORS 정책을 우회하거나 설정해야 한다. 
      - `setAllowedOrigins("*")` 등을 통해 허용 도메인을 지정한다.
@@ -20,7 +22,6 @@
 #### 2. WebSocketHandler
    - 메시지 처리
      - `TextWebSocketHandler` 또는 `BinaryWebSocketHandler`를 상속받아 클라이언트에서 전송된 메시지를 수신하고 응답하는 로직을 작성한다.
-     - ex. `handleTextMessage(WebSocketSession session, TextMessage message)` 메서드를 오버라이드하여 메시지를 처리한다.
    - 연결 관리
      - `afterConnectionEstablished`와 `afterConnectionClosed` 메서드를 통해 클라이언트 세션을 관리하며, 연결이 열리거나 닫힐 때의 동작을 정의할 수 있다.
 
@@ -40,3 +41,4 @@
 	https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/socket/package-summary.html
 
 * https://yjkim-dev.tistory.com/65?t
+* https://positive-impactor.tistory.com/946?t
