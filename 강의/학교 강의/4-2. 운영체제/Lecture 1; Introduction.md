@@ -131,27 +131,69 @@
 ![[Pasted image 20250311105644.png]]
 
 1. Simple Batch Systems
-	* batch:
-	* 한 번에 하나의 작업만 처리할 수 있다.
-	* 사용자가 작업을 제출하면 일괄적으로 처리하는 방식
-	* 비효율적
+	* <font color="#a5a5a5">batch: 일괄 처리 방식의 운영체제</font>
+	* <font color="#a5a5a5">한 번에 하나의 작업만 처리할 수 있다.</font>
+	* <font color="#a5a5a5">사용자가 작업을 제출하면 일괄적으로 처리하는 방식</font>
+	* <font color="#a5a5a5">비효율적</font>
 		
 2. Batch with spooling
-	* 작업을 메모리에 로드하고 실행하는 동안, 다음 작업을 준비할 수 있게 되었다!
-	* spooling: 입출력 작업을 별도의 장치에서 처리하는 기법
-	* CPU 활용도가 향상됨
+	* <font color="#a5a5a5">작업을 메모리에 로드하고 실행하는 동안, 다음 작업을 준비할 수 있게 되었다!</font>
+	* <font color="#a5a5a5">spooling: 입출력 작업을 별도의 장치에서 처리하는 기법</font>
+	* <font color="#a5a5a5">CPU 활용도가 향상됨</font>
 		
 3. Multiprogrammed Batch Systems
-	* 여러 작업을 메모리에 동시에 적재
-	* CPU 활용도가 더 향상됨!
-	* 작업 간 전환을 통해 CPU 사용 극대화하는 다중 프로그래밍 기법이 등장
+	* <font color="#a5a5a5">여러 작업을 메모리에 동시에 적재</font>
+	* <font color="#a5a5a5">CPU 활용도가 더 향상됨!</font>
+	* <font color="#a5a5a5">작업 간 전환을 통해 CPU 사용 극대화하는 다중 프로그래밍 기법이 등장</font>
 	
 4. Time-Sharing Systems
-	* 사용자가 실시간으로 상호작용이 가능해짐
-	* CPU 시간을 여러 사용자 간에 분할하여 할당하는 시분할 기법이 도입됨
-	* 사용자 경험이 향상됨
+	* <font color="#a5a5a5">사용자가 실시간으로 상호작용이 가능해짐</font>
+	* <font color="#a5a5a5">batch → interactive processing으로 전환됨</font>
+		* <font color="#a5a5a5">interactive processing: 실시간 상호작용을 통한 처리 방식</font>
+	* <font color="#a5a5a5">CPU 시간을 여러 사용자 간에 분할하여 할당하는 시분할 기법이 도입됨</font>
+	* <font color="#a5a5a5">사용자 경험이 향상됨</font>
+		
 5. Real-Time Systems
-	* 실시간 응답이 필수적인 시스템을 위해 등장
+	* <font color="#a5a5a5">실시간 응답이 필수적인 시스템을 위해 등장</font>
+		
 6. Personal Computer Systems
-	* *
+	* <font color="#a5a5a5">개인용 컴퓨터의 등장으로, 운영체제가 일반 사용자를 대상으로 발전하게 된다.</font>
+	* <font color="#a5a5a5">GUI 도입됨 (사용자 친화적)</font>
+	* <font color="#a5a5a5">개인 사용자의 다양한 요구사항을 반영하는 방향으로 발전</font>
+		
 7. Parallel Systems (병렬컴퓨팅)
+	* <font color="#a5a5a5">다수의 CPU 사용하여 작업을 병렬로 처리할 수 있게 됨</font>
+	* <font color="#a5a5a5">병렬 처리를 위한 스케줄링, 자원 관리 등의 기능이 요구됨</font>
+	* <font color="#a5a5a5">고성능 컴퓨팅, 데이터 분석 등에서 사용된다.</font>
+
+<font color="#a5a5a5">요컨대 운영체제는 단순한 일괄 처리 방식에서 점차 사용자 편의성, 자원 활용도, 실시간성 등을 고려하며 발전하였다.</font>
+
+
+#### 현대 컴퓨팅 패러다임
+1. Traditional Computing
+    * 주로 숫자 계산 및 데이터 처리 중심의 컴퓨팅
+    * <font color="#a5a5a5">대형 컴퓨터나 서버에서 주로 이루어지는 방식</font>
+	* <font color="#a5a5a5">많은 메모리와 고성능 프로세서를 활용</font>
+	    
+2. Web-based Computing
+    - 웹 브라우저를 통한 정보 처리 및 서비스 제공 중심
+    - <font color="#a5a5a5">클라우드 컴퓨팅 기술을 활용하여 웹상에서 데이터 처리 및 저장</font>
+	    - <font color="#9bbb59">클라우드 컴퓨팅 기술이 정확히 뭐지?</font>
+		    - <font color="#a5a5a5">인터넷(네트워크)을 통해 컴퓨팅 자원(서버, 스토리지, 네트워크 등)을 제공하는 기술. 하드웨어가 없어도 된다는 뜻.</font>
+    - <font color="#a5a5a5">사용자는 단순한 클라이언트 장치만으로도 웹 서비스 이용 가능</font>
+    
+3. 임베디드 컴퓨팅(Embedded Computing):
+    - 특정 목적을 위해 하드웨어와 소프트웨어가 결합된 시스템
+    - 휴대폰, 자동차, 가전제품 등에 사용됨
+    - 제한된 메모리, 느린 프로세서, 작은 디스플레이 화면, 배터리 등의 특징
+    - 온디바이스 AI 시스템
+	    - <font color="#a5a5a5">제한된 하드웨어 자원 속에서 효과적으로 컴퓨팅을 수행하는 것이 중요하다.</font>
+
+
+
+
+
+----
+#### 뱀발
+기초인 컴퓨터 구조를 잘 모르니까 헷갈림... 간단하게라도 공부하고 넘어가자
+* ![[컴퓨터의 구성 요소]]
