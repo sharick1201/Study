@@ -55,6 +55,8 @@
 				* <font color="#a5a5a5">프로세스가 필요한 메모리를 확보 못함</font>
 				* <font color="#a5a5a5">여러 응용 프로그램이 동시에 실행됨 → 메모리 사용량 증가 → 전체 시스템 메모리 부족 → 스와핑 현상 발생할 때</font>
 					* <font color="#9bbb59">스와핑 현상?</font>
+						* <font color="#a5a5a5">메모리 부족 상황에서, 프로세스를 RAM에서 보조 저장 장치(디스크)로 이동시키는 과정</font>
+						* <font color="#a5a5a5">빈번한 스와핑은 성능 저하를 유발한다.</font>
 			* <font color="#a5a5a5"><u>디스크 I/O 병목 현상</u></font>
 				* <font color="#a5a5a5">디스크 읽기/쓰기 속도 저하 또는 디스크 과부하</font>
 				* <font color="#a5a5a5">대량 파일 복사 또는 대규모 데이터베이스 쿼리 실행할 때</font>
@@ -65,6 +67,8 @@
 				* <font color="#a5a5a5">여러 프로세스가 동일한 자원에 접근</font>
 				* <font color="#a5a5a5">복수의 프로세스가 동일한 자원에 접근하려 할 때, Lock으로 인해 대기</font>
 					* <font color="#9bbb59">Lock?</font>
+						* <font color="#a5a5a5">락을 가진 프로세스만 특정 자원에 접근할 수 있다. 이때 다른 프로세스는 대기한다.</font>
+						* <font color="#a5a5a5">데이터 무결성 유지, 경쟁 조건(race condition, 동시 접근 시 접근 순서에 따라 결과가 달라지는 현상) 방지</font>
 	* 웬만하면, 모든 구성 요소들이 바쁘게 일하고 있도록 만드는 게 좋다.
 		* <font color="#a5a5a5">쉬고있는 구성요소가 별로 없도록 할 것.</font>
 		
