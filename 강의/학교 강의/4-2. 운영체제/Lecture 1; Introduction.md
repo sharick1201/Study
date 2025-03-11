@@ -126,5 +126,32 @@
 <font color="#a5a5a5">정리하면, <u>운영체제는 물리적인 하드웨어 자원들을 추상화하여 논리적인 인터페이스와 기능을 제공한다.</u> 이를 통해 사용자 편의성을 제공한다.</font>
 
 
-
 #### 운영체제 발전사
+
+![[Pasted image 20250311105644.png]]
+
+1. Simple Batch Systems
+	* batch:
+	* 한 번에 하나의 작업만 처리할 수 있다.
+	* 사용자가 작업을 제출하면 일괄적으로 처리하는 방식
+	* 비효율적
+		
+2. Batch with spooling
+	* 작업을 메모리에 로드하고 실행하는 동안, 다음 작업을 준비할 수 있게 되었다!
+	* spooling: 입출력 작업을 별도의 장치에서 처리하는 기법
+	* CPU 활용도가 향상됨
+		
+3. Multiprogrammed Batch Systems
+	* 여러 작업을 메모리에 동시에 적재
+	* CPU 활용도가 더 향상됨!
+	* 작업 간 전환을 통해 CPU 사용 극대화하는 다중 프로그래밍 기법이 등장
+	
+4. Time-Sharing Systems
+	* 사용자가 실시간으로 상호작용이 가능해짐
+	* CPU 시간을 여러 사용자 간에 분할하여 할당하는 시분할 기법이 도입됨
+	* 사용자 경험이 향상됨
+5. Real-Time Systems
+	* 실시간 응답이 필수적인 시스템을 위해 등장
+6. Personal Computer Systems
+	* *
+7. Parallel Systems (병렬컴퓨팅)
